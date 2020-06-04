@@ -9,6 +9,8 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
+    let presenter: StatusPresenter = HomeScreenPresenter()
 
     @IBOutlet weak var collectionView: UICollectionView!
     override func viewDidLoad() {
