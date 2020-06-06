@@ -18,7 +18,6 @@ class StatusCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-       
     }
 
 }

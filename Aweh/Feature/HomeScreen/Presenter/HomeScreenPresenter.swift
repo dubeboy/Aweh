@@ -12,7 +12,9 @@ protocol StatusPresenter {
     var statusCount: Int { get }
     
     func getStatuses(status: @escaping (_ status: [StatusViewModel]) -> Void)
-    func getStatus(at index: IndexPath) -> Status
+    func getStatus(at index: IndexPath) -> StatusViewModel
+    
+    var statusCellPresenter: StatusCellPresenter { get }
 }
 
 protocol StoriesPresenter {
@@ -25,16 +27,20 @@ protocol PostStatusPresenter {
 
 class HomeScreenPresenter {
     
+    var statusCellPresenter: StatusCellPresenter = StatusCellPresenter()
+    
+//    should have a init with status object
+    
 }
 
 extension HomeScreenPresenter: StatusPresenter {
     
-    func getStatus(at index: IndexPath) -> Status {
-        Self.status()[index.item]
+    func getStatus(at index: IndexPath) -> StatusViewModel {
+        Self.mockStatus()[index.item]
     }
     
     var statusCount: Int {
-        Self.status().count
+        Self.mockStatus().count
     }
     
     func getStatuses(status: @escaping (_ status: [StatusViewModel]) -> Void) {
@@ -43,34 +49,34 @@ extension HomeScreenPresenter: StatusPresenter {
     
     static func status() -> [Status] {
         return [
-            Status(status: "Some status",
+            Status(status: "Some status this is a long status messageg that will span more rhtsdsdsdhshd df",
                    userName: "Divine",
-                   statusImageLink: "local file",
-                   userImageLink: "local file",
+                   statusImageLink: "1",
+                   userImageLink: "2",
                    timeSincePosted: Date(),
                    distanceFromYou: 30),
             Status(status: "Some status",
                    userName: "Divine",
-                   statusImageLink: "local file",
-                   userImageLink: "local file",
+                   statusImageLink: "1",
+                   userImageLink: "3",
                    timeSincePosted: Date(),
                    distanceFromYou: 30),
             Status(status: "Some status",
                    userName: "Divine",
-                   statusImageLink: "local file",
-                   userImageLink: "local file",
+                   statusImageLink: "1",
+                   userImageLink: "2",
                    timeSincePosted: Date(),
                    distanceFromYou: 30),
             Status(status: "Some status",
                    userName: "Divine",
-                   statusImageLink: "local file",
-                   userImageLink: "local file",
+                   statusImageLink: "1",
+                   userImageLink: "2",
                    timeSincePosted: Date(),
                    distanceFromYou: 30),
             Status(status: "Some status",
                    userName: "Divine",
-                   statusImageLink: "local file",
-                   userImageLink: "local file",
+                   statusImageLink: "1",
+                   userImageLink: "2",
                    timeSincePosted: Date(),
                    distanceFromYou: 30),
         ]
