@@ -11,16 +11,24 @@ import UIKit
 class ViewController: UIViewController {
     
     let presenter: StatusPresenter = HomeScreenPresenter()
+    
+    let reuseIdentifier = String(describing: StatusCollectionViewCell.self)
 
     @IBOutlet weak var collectionView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        collectionView.
+//        collectionView.collectionViewLayout = StatusCollectionViewFlowLayout()
+        
+        collectionView.register(
+            UINib(nibName: reuseIdentifier, bundle: nil),
+            forCellWithReuseIdentifier: reuseIdentifier
+        )
+        
         
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.reloadData()
+//        collectionView.reloadData()
     }
 }
 

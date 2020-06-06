@@ -23,6 +23,19 @@ class StatusCollectionViewFlowLayout: UICollectionViewFlowLayout {
     private var imageHeight: CGFloat = 150
     private var numberOfLines: CGFloat = 0
     
+    
+    override var collectionViewContentSize: CGSize {
+        guard let collectionView = collectionView else { return .zero }
+        
+        let contentWidth = collectionView.bounds.size.width
+        
+        let contentHeight =  collectionView.bounds.size.height
+        
+        // this enables the scrolling
+        
+        return CGSize(width: contentWidth, height: 1000)
+    }
+    
     // could prepare
     
     // we can calculate the cell size here!!!
@@ -31,25 +44,22 @@ class StatusCollectionViewFlowLayout: UICollectionViewFlowLayout {
 //    }
 
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
-        
-        guard let collectionView = collectionView else { return nil }
         var visibleLayoutAttributes = [UICollectionViewLayoutAttributes]()
-        let visibleIndexPaths = collectionView.indexPathsForVisibleItems
-        // loop thru visisbleLayoutAttributes
-        for index in visibleIndexPaths {
-            let attributes = layoutAttributesForItem(at: index) // why can this be nil
-            if let notNil = attributes { // should not be nil
-                 visibleLayoutAttributes.append(notNil)
-            }
+        guard let attributes = super.layoutAttributesForElements(in: rect) else { return nil }
+        
+        for attribute in attributes {
+            guard let attr = layoutAttributesForItem(at: attribute.indexPath) else { return nil }
+            visibleLayoutAttributes.append(attr)
         }
         return visibleLayoutAttributes
     }
 
     override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+        
         guard let collectionView = collectionView else { return nil }
         
         let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
-        let cell = collectionView.cellForItem(at: indexPath) as! StatusCollectionViewCell
+        guard let cell = collectionView.cellForItem(at: indexPath) as? StatusCollectionViewCell else { return nil }
         attributes.frame = frameFor(statusCell: cell, collectionView: collectionView)
         
         return attributes
@@ -71,9 +81,14 @@ class StatusCollectionViewFlowLayout: UICollectionViewFlowLayout {
         let imageHeight: CGFloat = statusCell.statusImage.image == nil ? 0 : self.imageHeight
         
         let cellHeight = (cellPadding * 2) + imageHeight + textBoxHeight + nameLabelHeight
+        let size = CGSize(width: cellWidth, height: cellHeight)
         
-        return CGRect(x: 0, y: 0, width: cellWidth, height: cellHeight)
-        
+        var frame: CGRect = .zero
+        let indexPath = collectionView.indexPath(for: statusCell)
+        frame.origin.y = cellHeight * CGFloat((indexPath!.item))
+
+        frame = CGRect(origin: frame.origin, size: size)
+        return frame
     }
     
     // preferredLayoutAttributesFitting and estimatedSize
