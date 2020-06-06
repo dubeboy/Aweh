@@ -202,7 +202,6 @@
 				7162C61124886369002D8ED4 /* Entity */,
 				718BE80A2486BA8000CA328B /* AppDelegate.swift */,
 				718BE80C2486BA8000CA328B /* SceneDelegate.swift */,
-				718BE8102486BA8000CA328B /* Main.storyboard */,
 				718BE8132486BA8200CA328B /* Assets.xcassets */,
 				718BE8152486BA8200CA328B /* LaunchScreen.storyboard */,
 				718BE8182486BA8200CA328B /* Info.plist */,
@@ -252,6 +251,7 @@
 			isa = PBXGroup;
 			children = (
 				718BE80E2486BA8000CA328B /* ViewController.swift */,
+				718BE8102486BA8000CA328B /* Main.storyboard */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";

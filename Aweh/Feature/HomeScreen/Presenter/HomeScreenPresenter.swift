@@ -9,7 +9,10 @@
 import Foundation
 
 protocol StatusPresenter {
-    func getStatus(status: @escaping (_ status: [StatusViewModel]) -> Void)
+    var statusCount: Int { get }
+    
+    func getStatuses(status: @escaping (_ status: [StatusViewModel]) -> Void)
+    func getStatus(at index: IndexPath) -> Status
 }
 
 protocol StoriesPresenter {
@@ -25,7 +28,16 @@ class HomeScreenPresenter {
 }
 
 extension HomeScreenPresenter: StatusPresenter {
-    func getStatus(status: @escaping (_ status: [StatusViewModel]) -> Void) {
+    
+    func getStatus(at index: IndexPath) -> Status {
+        Self.status()[index.item]
+    }
+    
+    var statusCount: Int {
+        Self.status().count
+    }
+    
+    func getStatuses(status: @escaping (_ status: [StatusViewModel]) -> Void) {
         status(HomeScreenPresenter.mockStatus())
     }
     
