@@ -7,7 +7,23 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "3FB743D3-8E96-4407-B4DE-0B9EC1494204"
+            uuid = "EA5F4E8E-B115-44DC-B026-590D3B36803B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Aweh/Feature/HomeScreen/View/StatusCollectionView/StatusCollectionViewFlowLayout.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
+            landmarkName = "layoutAttributesForElements(in:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "09A7B8E4-4AFA-43AC-96EB-10EFDE7F7470"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -16,15 +32,15 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "71"
             endingLineNumber = "71"
-            landmarkName = "shouldInvalidateLayout(forBoundsChange:)"
+            landmarkName = "layoutAttributesForElements(in:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "7C6E8FCB-3E73-4491-BAD5-8EA92172DB97"
-            shouldBeEnabled = "No"
+            uuid = "6B5C5C40-2D76-47A1-BEA9-39E976EFC9D0"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Aweh/Feature/HomeScreen/View/StatusCollectionView/StatusCollectionViewFlowLayout.swift"
@@ -32,22 +48,38 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "73"
             endingLineNumber = "73"
-            landmarkName = "shouldInvalidateLayout(forBoundsChange:)"
+            landmarkName = "layoutAttributesForElements(in:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "0CD920A8-29C9-4AE0-9056-8943C793877F"
+            uuid = "613A80C1-419E-4FA9-936B-D36F4D3FFE19"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Aweh/Feature/HomeScreen/View/StatusCollectionView/StatusCollectionViewFlowLayout.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
+            landmarkName = "layoutAttributesForElements(in:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5E30001A-19B7-44AB-9892-1441622AC8BB"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Aweh/Feature/HomeScreen/View/StatusCollectionView/StatusCollectionViewFlowLayout.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "50"
-            endingLineNumber = "50"
+            startingLineNumber = "69"
+            endingLineNumber = "69"
             landmarkName = "layoutAttributesForElements(in:)"
             landmarkType = "7">
          </BreakpointContent>

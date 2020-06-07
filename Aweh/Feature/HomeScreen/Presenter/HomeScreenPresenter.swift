@@ -15,6 +15,9 @@ protocol StatusPresenter {
     func getStatus(at index: IndexPath) -> StatusViewModel
     
     var statusCellPresenter: StatusCellPresenter { get }
+    
+    func index(for item: StatusViewModel) -> Int
+
 }
 
 protocol StoriesPresenter {
@@ -34,6 +37,11 @@ class HomeScreenPresenter {
 }
 
 extension HomeScreenPresenter: StatusPresenter {
+    func index(for item: StatusViewModel) -> Int {
+        Self.mockStatus().firstIndex {
+            item == $0
+       } ?? 0
+    }
     
     func getStatus(at index: IndexPath) -> StatusViewModel {
         Self.mockStatus()[index.item]

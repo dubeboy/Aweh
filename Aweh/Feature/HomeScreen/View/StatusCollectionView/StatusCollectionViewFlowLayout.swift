@@ -8,40 +8,59 @@
 
 import UIKit
 
-protocol CollectionViewDelegate: class {
-    func numberOfItems() -> Int
-}
-
 class StatusCollectionViewFlowLayout: UICollectionViewFlowLayout {
-    private let numberOfColumns = 3
-    private let cellPadding: CGFloat = 20 // could reduce to i6
-    private let cellHeight: CGFloat = 150
-    weak var delegate: CollectionViewDelegate?
-    private var cache = [UICollectionViewLayoutAttributes]()
+    private let itemSpacing: CGFloat = 8 // should be a global variable
+    private let margin: CGFloat = 16
+    private let userImageWidth: CGFloat = 60
+    private var imageHeight: CGFloat = 200
+    private var estimatedHeight: CGFloat = 150
+    private var statusPresenter: StatusPresenter
     
-    private var contentHeight: CGFloat = 0
-    private var imageHeight: CGFloat = 150
-    private var numberOfLines: CGFloat = 0
+    private var cachedAttributes = [IndexPath: UICollectionViewLayoutAttributes]()
     
+    init(statusPresenter: StatusPresenter) {
+        self.statusPresenter = statusPresenter
+        super.init()
+    }
     
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func prepare() {
+        super.prepare()
+        
+        guard let collectionView = collectionView else { return }
+        
+        sectionInset = UIEdgeInsets(
+            top: margin,
+            left: margin,
+            bottom: margin,
+            right: margin
+        )
+        
+        let cvBounds = collectionView.bounds
+        let cvWidth = cvBounds.width
+        
+        minimumLineSpacing = itemSpacing
+        sectionInsetReference = .fromSafeArea
+        scrollDirection = .vertical
+        
+        guard cachedAttributes.isEmpty else { return }
+        
+        let itemsCount = collectionView.numberOfItems(inSection: 0)
+        
+        for item in 0..<itemsCount {
+            let indexPath = IndexPath(item: item, section: 0)
+            cachedAttributes[indexPath] = createAttributesForItem(at: indexPath, cellWidth: cvWidth)
+        }
+    }
+  
     override var collectionViewContentSize: CGSize {
         guard let collectionView = collectionView else { return .zero }
         
-        let contentWidth = collectionView.bounds.size.width
-        
-        let contentHeight =  collectionView.bounds.size.height
-        
-        // this enables the scrolling
-        
-        return CGSize(width: contentWidth, height: 1000)
+        return CGSize(width: collectionView.bounds.width, height: 10000)
     }
-    
-    // could prepare
-    
-    // we can calculate the cell size here!!!
-//    override var collectionViewContentSize: CGSize {
-//        return CGSize(width: contentWidth, height: contentHeight)
-//    }
 
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         var visibleLayoutAttributes = [UICollectionViewLayoutAttributes]()
@@ -58,37 +77,54 @@ class StatusCollectionViewFlowLayout: UICollectionViewFlowLayout {
         
         guard let collectionView = collectionView else { return nil }
         
-        let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
-        guard let cell = collectionView.cellForItem(at: indexPath) as? StatusCollectionViewCell else { return nil }
-        attributes.frame = frameFor(statusCell: cell, collectionView: collectionView)
-        
-        return attributes
+        return createAttributesForItem(at: indexPath, cellWidth: collectionView.bounds.width)
         
     }
     
     override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
         if collectionView?.bounds != newBounds {
+            cachedAttributes.removeAll()
             return true
         }
         return false
     }
     
-    private func frameFor(statusCell: StatusCollectionViewCell, collectionView: UICollectionView) -> CGRect {
+    override func invalidateLayout(with context: UICollectionViewLayoutInvalidationContext) {
+        if context.invalidateDataSourceCounts {
+            cachedAttributes.removeAll()
+        }
+        super.invalidateLayout(with: context)
+    }
+    
+    private func frameFor(statusViewModel: StatusViewModel, cellWidth: CGFloat) -> CGRect {
         
-        let cellWidth = collectionView.bounds.size.width
-        let textBoxHeight = statusCell.statusText.bounds.height
-        let nameLabelHeight = statusCell.userName.bounds.height
-        let imageHeight: CGFloat = statusCell.statusImage.image == nil ? 0 : self.imageHeight
-        
-        let cellHeight = (cellPadding * 2) + imageHeight + textBoxHeight + nameLabelHeight
+        let statusTextFrameHeight = calculateTextBlockSize(text: statusViewModel.status, cvWidth: cellWidth).height
+        let nameLabelHeight: CGFloat = 21
+        let imageHeight: CGFloat = statusViewModel.statusImage == nil ? 0 : self.imageHeight
+        let cellHeight = (margin * 2) + imageHeight + statusTextFrameHeight + nameLabelHeight
         let size = CGSize(width: cellWidth, height: cellHeight)
         
-        var frame: CGRect = .zero
-        let indexPath = collectionView.indexPath(for: statusCell)
-        frame.origin.y = cellHeight * CGFloat((indexPath!.item))
-
-        frame = CGRect(origin: frame.origin, size: size)
+        let itemIndex = CGFloat(statusPresenter.index(for: statusViewModel))
+        let yPos = itemIndex * (size.height + itemSpacing)
+        
+        let frame = CGRect(x: 0, y: yPos, width: size.width, height: size.height)
         return frame
+    }
+    
+    private func calculateTextBlockSize(text: NSAttributedString, cvWidth: CGFloat) -> CGSize {
+        
+        let width = cvWidth - userImageWidth - (itemSpacing) - (margin * 2)
+        let height = ceil(CGFloat(text.length) / width)
+        
+        return CGSize(width: width, height: height)
+        // boundingRect would be most wanted
+    }
+    
+    
+    private func createAttributesForItem(at indexPath: IndexPath, cellWidth: CGFloat) -> UICollectionViewLayoutAttributes {
+        let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
+        attributes.frame = frameFor(statusViewModel: statusPresenter.getStatus(at: indexPath), cellWidth: cellWidth)
+        return attributes
     }
     
     // preferredLayoutAttributesFitting and estimatedSize

@@ -11,6 +11,7 @@ import UIKit
 class ViewController: UIViewController {
     
     let presenter: StatusPresenter = HomeScreenPresenter()
+    var layout: UICollectionViewFlowLayout!
     
     let reuseIdentifier = String(describing: StatusCollectionViewCell.self)
 
@@ -18,7 +19,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        collectionView.collectionViewLayout = StatusCollectionViewFlowLayout()
+        
+        collectionView.collectionViewLayout = StatusCollectionViewFlowLayout(statusPresenter: presenter)
         
         collectionView.register(
             UINib(nibName: reuseIdentifier, bundle: nil),
@@ -28,11 +30,14 @@ class ViewController: UIViewController {
         
         collectionView.delegate = self
         collectionView.dataSource = self
-//        collectionView.reloadData()
     }
 }
 
-extension ViewController: UICollectionViewDelegate {
+extension ViewController: UICollectionViewDelegateFlowLayout {
+    
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//
+//    }
     
 }
 

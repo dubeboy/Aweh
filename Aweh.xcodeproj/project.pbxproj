@@ -19,6 +19,7 @@
 		7162C60D24884BBB002D8ED4 /* StatusViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7162C60C24884BBB002D8ED4 /* StatusViewModel.swift */; };
 		7162C61024886320002D8ED4 /* HomeScreenInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7162C60F24886320002D8ED4 /* HomeScreenInteractor.swift */; };
 		7162C6132488637F002D8ED4 /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7162C6122488637F002D8ED4 /* Status.swift */; };
+		716DA6BB248C581F001B74E2 /* Theme+Elements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716DA6BA248C581F001B74E2 /* Theme+Elements.swift */; };
 		718BE80B2486BA8000CA328B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718BE80A2486BA8000CA328B /* AppDelegate.swift */; };
 		718BE80D2486BA8000CA328B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718BE80C2486BA8000CA328B /* SceneDelegate.swift */; };
 		718BE80F2486BA8000CA328B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718BE80E2486BA8000CA328B /* ViewController.swift */; };
@@ -45,6 +46,7 @@
 		7162C60C24884BBB002D8ED4 /* StatusViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusViewModel.swift; sourceTree = "<group>"; };
 		7162C60F24886320002D8ED4 /* HomeScreenInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenInteractor.swift; sourceTree = "<group>"; };
 		7162C6122488637F002D8ED4 /* Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
+		716DA6BA248C581F001B74E2 /* Theme+Elements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Theme+Elements.swift"; sourceTree = "<group>"; };
 		718BE8072486BA8000CA328B /* Aweh.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Aweh.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		718BE80A2486BA8000CA328B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		718BE80C2486BA8000CA328B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -230,6 +232,7 @@
 			children = (
 				7157C2332488766F00F0A7F0 /* NSLayoutConstraints+Elements.swift */,
 				713549B0248BE45A0009EE6A /* UICollectionView+Elements.swift */,
+				716DA6BA248C581F001B74E2 /* Theme+Elements.swift */,
 			);
 			path = Elements;
 			sourceTree = "<group>";
@@ -277,7 +280,6 @@
 				265F7EC230D448B878C43061 /* Pods-Aweh.debug.xcconfig */,
 				B607C0A1A87FE1D0A8B4E53C /* Pods-Aweh.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -389,6 +391,7 @@
 			files = (
 				7157C21D24886DB400F0A7F0 /* HomeScreenRepository.swift in Sources */,
 				718BE80F2486BA8000CA328B /* ViewController.swift in Sources */,
+				716DA6BB248C581F001B74E2 /* Theme+Elements.swift in Sources */,
 				7157C22924886F0900F0A7F0 /* HomeScreenService.swift in Sources */,
 				7162C61024886320002D8ED4 /* HomeScreenInteractor.swift in Sources */,
 				7162C60B24884BAB002D8ED4 /* HomeScreenPresenter.swift in Sources */,

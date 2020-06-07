@@ -18,6 +18,8 @@ class StatusCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        statusImage.contentMode = .scaleToFill
+        sizeToFit()
     }
 
 }

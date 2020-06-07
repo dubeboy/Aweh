@@ -10,9 +10,9 @@ import Foundation
 
 class StatusCellPresenter {
     func configure(with cell: StatusCollectionViewCell, forDisplaying model: StatusViewModel) {
-        cell.userName.text = model.userName
-        cell.statusText.text = model.status
-        cell.distanceAndTime.text = model.distanceFromYou
+        cell.userName.text = model.userName // change this to attributed string
+        cell.statusText.attributedText = model.status
+        cell.distanceAndTime.text = model.distanceFromYou // change this to attributed string
         cell.statusImage.image = model.statusImage
     }
 }

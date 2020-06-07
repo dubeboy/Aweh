@@ -8,8 +8,8 @@
 
 import UIKit
 
-struct StatusViewModel {
-    let status: String
+struct StatusViewModel: Equatable {
+    let status: NSAttributedString
     let userName: String
     let statusImage: UIImage?
     let userImage: UIImage
@@ -21,7 +21,7 @@ extension StatusViewModel {
     static func transform(from status: Status) -> Self {
         
         return StatusViewModel(
-            status: status.status,
+            status: NSAttributedString(string: status.status),
             userName: status.userName,
             statusImage: UIImage(named: status.statusImageLink!)!,
             userImage: UIImage(named: status.userImageLink!)!,
