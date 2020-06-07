@@ -43,7 +43,6 @@ class StatusCollectionViewFlowLayout: UICollectionViewFlowLayout {
         let cvWidth = cvBounds.width
         
         minimumLineSpacing = itemSpacing
-        sectionInsetReference = .fromSafeArea
         scrollDirection = .vertical
         
         guard cachedAttributes.isEmpty else { return }
@@ -57,28 +56,20 @@ class StatusCollectionViewFlowLayout: UICollectionViewFlowLayout {
     }
   
     override var collectionViewContentSize: CGSize {
-        guard let collectionView = collectionView else { return .zero }
+        let topMostEdge = cachedAttributes.values.map { $0.frame.minY }.min() ?? 0
+        let bottomMostEdge = cachedAttributes.values.map { $0.frame.maxY }.max() ?? 0
         
-        return CGSize(width: collectionView.bounds.width, height: 10000)
+        return CGSize(width: itemSize.width, height: bottomMostEdge - topMostEdge)
     }
 
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
-        var visibleLayoutAttributes = [UICollectionViewLayoutAttributes]()
-        guard let attributes = super.layoutAttributesForElements(in: rect) else { return nil }
-        
-        for attribute in attributes {
-            guard let attr = layoutAttributesForItem(at: attribute.indexPath) else { return nil }
-            visibleLayoutAttributes.append(attr)
-        }
-        return visibleLayoutAttributes
+        return cachedAttributes
+            .map { $0.value }
+            .filter { $0.frame.intersects(rect) }
     }
 
     override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
-        
-        guard let collectionView = collectionView else { return nil }
-        
-        return createAttributesForItem(at: indexPath, cellWidth: collectionView.bounds.width)
-        
+        return cachedAttributes[indexPath]
     }
     
     override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
@@ -123,7 +114,10 @@ class StatusCollectionViewFlowLayout: UICollectionViewFlowLayout {
     
     private func createAttributesForItem(at indexPath: IndexPath, cellWidth: CGFloat) -> UICollectionViewLayoutAttributes {
         let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
-        attributes.frame = frameFor(statusViewModel: statusPresenter.getStatus(at: indexPath), cellWidth: cellWidth)
+        let frame = frameFor(statusViewModel: statusPresenter.getStatus(at: indexPath), cellWidth: cellWidth)
+        attributes.frame.size = frame.size
+        attributes.frame.origin.y = CGFloat(indexPath.item) * (frame.height + itemSpacing)
+        attributes.frame.origin.x = (cellWidth - frame.width) / 2
         return attributes
     }
     
