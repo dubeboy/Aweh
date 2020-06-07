@@ -13,7 +13,7 @@ class StatusCollectionViewFlowLayout: UICollectionViewFlowLayout {
     private let margin: CGFloat = 16
     private let userImageWidth: CGFloat = 60
     private var imageHeight: CGFloat = 200
-    private var estimatedHeight: CGFloat = 150
+    private var estimatedHeight: CGFloat = 254
     private var statusPresenter: StatusPresenter
     
     private var cachedAttributes = [IndexPath: UICollectionViewLayoutAttributes]()
@@ -42,6 +42,8 @@ class StatusCollectionViewFlowLayout: UICollectionViewFlowLayout {
         let cvBounds = collectionView.bounds
         let cvWidth = cvBounds.width
         
+//        estimatedItemSize = CGSize(width: cvWidth, height: 254)
+        itemSize = CGSize(width: cvWidth - (margin * 2), height: estimatedHeight)
         minimumLineSpacing = itemSpacing
         scrollDirection = .vertical
         
@@ -51,7 +53,7 @@ class StatusCollectionViewFlowLayout: UICollectionViewFlowLayout {
         
         for item in 0..<itemsCount {
             let indexPath = IndexPath(item: item, section: 0)
-            cachedAttributes[indexPath] = createAttributesForItem(at: indexPath, cellWidth: cvWidth)
+            cachedAttributes[indexPath] = createAttributesForItem(at: indexPath, cellWidth: cvWidth) // guess we can just use the esitimated height
         }
     }
   
@@ -69,7 +71,8 @@ class StatusCollectionViewFlowLayout: UICollectionViewFlowLayout {
     }
 
     override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
-        return cachedAttributes[indexPath]
+        guard let attributes = cachedAttributes[indexPath] else { fatalError("No attributes cached") }
+        return attributes
     }
     
     override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
@@ -87,42 +90,15 @@ class StatusCollectionViewFlowLayout: UICollectionViewFlowLayout {
         super.invalidateLayout(with: context)
     }
     
-    private func frameFor(statusViewModel: StatusViewModel, cellWidth: CGFloat) -> CGRect {
-        
-        let statusTextFrameHeight = calculateTextBlockSize(text: statusViewModel.status, cvWidth: cellWidth).height
-        let nameLabelHeight: CGFloat = 21
-        let imageHeight: CGFloat = statusViewModel.statusImage == nil ? 0 : self.imageHeight
-        let cellHeight = (margin * 2) + imageHeight + statusTextFrameHeight + nameLabelHeight
-        let size = CGSize(width: cellWidth, height: cellHeight)
-        
-        let itemIndex = CGFloat(statusPresenter.index(for: statusViewModel))
-        let yPos = itemIndex * (size.height + itemSpacing)
-        
-        let frame = CGRect(x: 0, y: yPos, width: size.width, height: size.height)
-        return frame
-    }
-    
-    private func calculateTextBlockSize(text: NSAttributedString, cvWidth: CGFloat) -> CGSize {
-        
-        let width = cvWidth - userImageWidth - (itemSpacing) - (margin * 2)
-        let height = ceil(CGFloat(text.length) / width)
-        
-        return CGSize(width: width, height: height)
-        // boundingRect would be most wanted
-    }
-    
-    
-    private func createAttributesForItem(at indexPath: IndexPath, cellWidth: CGFloat) -> UICollectionViewLayoutAttributes {
+    private func createAttributesForItem(at indexPath: IndexPath, cellWidth: CGFloat) -> UICollectionViewLayoutAttributes? {
         let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
-        let frame = frameFor(statusViewModel: statusPresenter.getStatus(at: indexPath), cellWidth: cellWidth)
-        attributes.frame.size = frame.size
-        attributes.frame.origin.y = CGFloat(indexPath.item) * (frame.height + itemSpacing)
-        attributes.frame.origin.x = (cellWidth - frame.width) / 2
+        attributes.frame.size = itemSize
+        attributes.frame.origin.y = CGFloat(indexPath.item) * (itemSize.height + itemSpacing)
+        attributes.frame.origin.x = (cellWidth - itemSize.width) / 2
         return attributes
     }
     
     // preferredLayoutAttributesFitting and estimatedSize
-    
 }
 
 //if attribute.frame.intersects(rect) {
