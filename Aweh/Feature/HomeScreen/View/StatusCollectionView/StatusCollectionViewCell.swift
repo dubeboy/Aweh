@@ -18,37 +18,44 @@ class StatusCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        statusImage.contentMode = .scaleAspectFit
-        sizeToFit()
+        statusImage.contentMode = .scaleAspectFill
+        configureCell()
     }
     
-    //    override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
-    //
-    //    }
-    
-    private func frameFor(statusViewModel: StatusViewModel, cellWidth: CGFloat) -> CGRect {
-        
-        let statusTextFrameHeight = calculateTextBlockSize(text: statusViewModel.status, cvWidth: cellWidth).height
-        let nameLabelHeight: CGFloat = 21
-        let imageHeight: CGFloat = statusViewModel.statusImage == nil ? 0 : self.imageHeight
-        let cellHeight = (margin * 2) + imageHeight + statusTextFrameHeight + nameLabelHeight
-        let size = CGSize(width: cellWidth, height: cellHeight)
-        
-        let itemIndex = CGFloat(statusPresenter.index(for: statusViewModel))
-        let yPos = itemIndex * (estimatedHeight + itemSpacing)
-        
-        let frame = CGRect(x: 0, y: yPos, width: size.width, height: estimatedHeight)
-        return frame
+    override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
+        let attributes = super.preferredLayoutAttributesFitting(layoutAttributes)
+        attributes.frame.size = calculateFrame()
+        return attributes
     }
     
-    private func calculateTextBlockSize(text: NSAttributedString, cvWidth: CGFloat) -> CGSize {
+    private func calculateFrame() -> CGSize {
         
-        let width = cvWidth - userImageWidth - (itemSpacing) - (margin * 2)
-        let height = ceil((CGFloat(text.length) * 21)  / width)
-        
-        return CGSize(width: width, height: height * 21)
-        // boundingRect would be most wanted
+        let imageHeight: CGFloat = statusImage.image == nil ? 0 : 150 // todo add these to global file
+        let cellHeight = contentView.bounds.height + imageHeight + statusText.bounds.height + statusImage.bounds.height
+        let size = CGSize(width: bounds.width, height: cellHeight)
+    
+       return size
     }
     
+    private func configureContentView() {
+        contentView.backgroundColor = .systemGray6
+        contentView.clipsToBounds = true
+        contentView.layer.cornerRadius = 5
+        contentView.layer.shadowColor = UIColor.systemGray2.cgColor
+        contentView.layer.shadowOpacity = 1
+        contentView.layer.shadowOffset = .zero
+        contentView.layer.shadowRadius = 5
+        
+    }
     
+    private func configureCell() {
+        configureContentView()
+        configureProfileImage()
+    }
+    
+    private func configureProfileImage() {
+        profileImage.clipsToBounds = true
+        profileImage.layer.cornerRadius = profileImage.frame.height / 2
+        profileImage.contentMode = .scaleAspectFill
+    }
 }

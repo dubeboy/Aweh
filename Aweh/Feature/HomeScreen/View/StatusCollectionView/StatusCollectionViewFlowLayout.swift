@@ -14,26 +14,16 @@ class StatusCollectionViewFlowLayout: UICollectionViewFlowLayout {
     private let userImageWidth: CGFloat = 60
     private var imageHeight: CGFloat = 200
     private var estimatedHeight: CGFloat = 254
-    private var statusPresenter: StatusPresenter
     
     private var cachedAttributes = [IndexPath: UICollectionViewLayoutAttributes]()
     
-    init(statusPresenter: StatusPresenter) {
-        self.statusPresenter = statusPresenter
-        super.init()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     override func prepare() {
-        super.prepare()
+        super.prepare() // useless
         
         guard let collectionView = collectionView else { return }
         
-        sectionInset = UIEdgeInsets(
-            top: margin,
+        sectionInset = UIEdgeInsets( // use less
+            top: margin + 8,
             left: margin,
             bottom: margin,
             right: margin
@@ -46,6 +36,7 @@ class StatusCollectionViewFlowLayout: UICollectionViewFlowLayout {
         itemSize = CGSize(width: cvWidth - (margin * 2), height: estimatedHeight)
         minimumLineSpacing = itemSpacing
         scrollDirection = .vertical
+        collectionView.decelerationRate = .fast
         
         guard cachedAttributes.isEmpty else { return }
         
@@ -75,6 +66,22 @@ class StatusCollectionViewFlowLayout: UICollectionViewFlowLayout {
         return attributes
     }
     
+    override func targetContentOffset(forProposedContentOffset proposedContentOffset: CGPoint, withScrollingVelocity velocity: CGPoint) -> CGPoint {
+        guard let collectionView = collectionView else { return super.targetContentOffset(forProposedContentOffset: proposedContentOffset) }
+        let midY: CGFloat = collectionView.bounds.size.height / 2
+        guard let closestAttribute = findClosestAttributes(toXPosition: proposedContentOffset.y + midY) else { return super.targetContentOffset(forProposedContentOffset: proposedContentOffset) }
+        return CGPoint(x: closestAttribute.center.x, y: proposedContentOffset.y - midY)
+    }
+
+    private func findClosestAttributes(toXPosition xPosition: CGFloat) -> UICollectionViewLayoutAttributes? {
+        guard let collectionView = collectionView else { return nil }
+        let searchRect = CGRect(
+            x: collectionView.bounds.width, y: xPosition - collectionView.bounds.minY,
+            width: collectionView.bounds.width * 2, height: collectionView.bounds.height
+        )
+        return layoutAttributesForElements(in: searchRect)?.min(by: { abs($0.center.x - xPosition) < abs($1.center.x - xPosition) })
+    }
+    
     override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
         if collectionView?.bounds != newBounds {
             cachedAttributes.removeAll()
@@ -89,7 +96,7 @@ class StatusCollectionViewFlowLayout: UICollectionViewFlowLayout {
         }
         super.invalidateLayout(with: context)
     }
-    
+
     private func createAttributesForItem(at indexPath: IndexPath, cellWidth: CGFloat) -> UICollectionViewLayoutAttributes? {
         let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
         attributes.frame.size = itemSize
@@ -100,7 +107,3 @@ class StatusCollectionViewFlowLayout: UICollectionViewFlowLayout {
     
     // preferredLayoutAttributesFitting and estimatedSize
 }
-
-//if attribute.frame.intersects(rect) {
-//    visibleLayoutAttributes.append(attribute)
-//}

@@ -16,29 +16,48 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="pvR-sc-Id7">
-                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <rect key="frame" x="0.0" y="104" width="414" height="709"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="SNb-9Y-AQy">
                                     <size key="itemSize" width="414" height="128"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="16" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells/>
                             </collectionView>
+                            <button opaque="NO" alpha="0.94999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rqk-2W-7sZ">
+                                <rect key="frame" x="348" y="747" width="50" height="50"/>
+                                <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="AMF-ji-7gs"/>
+                                    <constraint firstAttribute="width" constant="50" id="Ixl-U6-qLA"/>
+                                </constraints>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" image="square.and.arrow.up" catalog="system">
+                                    <color key="titleShadowColor" systemColor="systemGray2Color" red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default"/>
+                                </state>
+                                <connections>
+                                    <action selector="postButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zjo-Xe-J0B"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="pvR-sc-Id7" secondAttribute="trailing" id="3t6-CY-JfD"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="rqk-2W-7sZ" secondAttribute="bottom" constant="16" id="Fri-K5-O9C"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="rqk-2W-7sZ" secondAttribute="trailing" constant="16" id="nia-MD-J2S"/>
                             <constraint firstItem="pvR-sc-Id7" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="qun-k8-XBq"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="pvR-sc-Id7" secondAttribute="bottom" id="rIR-qz-usS"/>
-                            <constraint firstItem="pvR-sc-Id7" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="uCZ-bE-zXM"/>
+                            <constraint firstItem="pvR-sc-Id7" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="16" id="uCZ-bE-zXM"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" title="Home" id="vfd-gW-09r"/>
                     <connections>
                         <outlet property="collectionView" destination="pvR-sc-Id7" id="eEi-Q4-fRv"/>
+                        <outlet property="postButton" destination="rqk-2W-7sZ" id="hZ2-wZ-eQX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -85,5 +104,6 @@
     </scenes>
     <resources>
         <image name="person.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
     </resources>
 </document>

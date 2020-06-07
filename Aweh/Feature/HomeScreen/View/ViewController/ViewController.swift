@@ -15,12 +15,21 @@ class ViewController: UIViewController {
     
     let reuseIdentifier = String(describing: StatusCollectionViewCell.self)
 
+    @IBOutlet weak var postButton: UIButton! {
+        didSet {
+            postButton.layer.cornerRadius = postButton.frame.height / 2
+            postButton.clipsToBounds = true
+            postButton.backgroundColor = .systemRed
+        }
+    }
+    
     @IBOutlet weak var collectionView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        collectionView.collectionViewLayout = StatusCollectionViewFlowLayout(statusPresenter: presenter)
+        view.backgroundColor = .systemBackground
+        collectionView.backgroundColor = .systemBackground
+        collectionView.collectionViewLayout = StatusCollectionViewFlowLayout()
         
         collectionView.register(
             UINib(nibName: reuseIdentifier, bundle: nil),
@@ -31,7 +40,13 @@ class ViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
     }
+    
+    @IBAction func postButtonAction(_ sender: Any) {
+        
+    }
 }
+
+
 
 extension ViewController: UICollectionViewDelegateFlowLayout {
     
