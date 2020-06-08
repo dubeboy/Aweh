@@ -12,7 +12,6 @@
 		7157C21D24886DB400F0A7F0 /* HomeScreenRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7157C21C24886DB400F0A7F0 /* HomeScreenRepository.swift */; };
 		7157C22024886E2100F0A7F0 /* BaseRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7157C21F24886E2100F0A7F0 /* BaseRepository.swift */; };
 		7157C22524886EB300F0A7F0 /* AwehService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7157C22424886EB300F0A7F0 /* AwehService.swift */; };
-		7157C22924886F0900F0A7F0 /* HomeScreenService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7157C22824886F0900F0A7F0 /* HomeScreenService.swift */; };
 		7157C2322488761900F0A7F0 /* SimpleDependencyInjector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7157C2312488761900F0A7F0 /* SimpleDependencyInjector.swift */; };
 		7157C2342488766F00F0A7F0 /* NSLayoutConstraints+Elements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7157C2332488766F00F0A7F0 /* NSLayoutConstraints+Elements.swift */; };
 		7162C60B24884BAB002D8ED4 /* HomeScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7162C60A24884BAB002D8ED4 /* HomeScreenPresenter.swift */; };
@@ -20,6 +19,11 @@
 		7162C61024886320002D8ED4 /* HomeScreenInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7162C60F24886320002D8ED4 /* HomeScreenInteractor.swift */; };
 		7162C6132488637F002D8ED4 /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7162C6122488637F002D8ED4 /* Status.swift */; };
 		716DA6BB248C581F001B74E2 /* Theme+Elements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716DA6BA248C581F001B74E2 /* Theme+Elements.swift */; };
+		716DA6C2248D7E55001B74E2 /* PostStatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716DA6C1248D7E55001B74E2 /* PostStatusViewController.swift */; };
+		716DA6C4248D7E69001B74E2 /* PostStatusPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716DA6C3248D7E69001B74E2 /* PostStatusPresenter.swift */; };
+		716DA6C9248D899B001B74E2 /* PostStatusViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 716DA6C8248D899B001B74E2 /* PostStatusViewController.xib */; };
+		716DA6CB248EE4D2001B74E2 /* UIViewController+Elements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716DA6CA248EE4D2001B74E2 /* UIViewController+Elements.swift */; };
+		716DA6CE248EE57D001B74E2 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716DA6CD248EE57D001B74E2 /* MainCoordinator.swift */; };
 		718BE80B2486BA8000CA328B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718BE80A2486BA8000CA328B /* AppDelegate.swift */; };
 		718BE80D2486BA8000CA328B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718BE80C2486BA8000CA328B /* SceneDelegate.swift */; };
 		718BE80F2486BA8000CA328B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718BE80E2486BA8000CA328B /* ViewController.swift */; };
@@ -39,7 +43,6 @@
 		7157C21C24886DB400F0A7F0 /* HomeScreenRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenRepository.swift; sourceTree = "<group>"; };
 		7157C21F24886E2100F0A7F0 /* BaseRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRepository.swift; sourceTree = "<group>"; };
 		7157C22424886EB300F0A7F0 /* AwehService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AwehService.swift; sourceTree = "<group>"; };
-		7157C22824886F0900F0A7F0 /* HomeScreenService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenService.swift; sourceTree = "<group>"; };
 		7157C2312488761900F0A7F0 /* SimpleDependencyInjector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleDependencyInjector.swift; sourceTree = "<group>"; };
 		7157C2332488766F00F0A7F0 /* NSLayoutConstraints+Elements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLayoutConstraints+Elements.swift"; sourceTree = "<group>"; };
 		7162C60A24884BAB002D8ED4 /* HomeScreenPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenPresenter.swift; sourceTree = "<group>"; };
@@ -47,6 +50,11 @@
 		7162C60F24886320002D8ED4 /* HomeScreenInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenInteractor.swift; sourceTree = "<group>"; };
 		7162C6122488637F002D8ED4 /* Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
 		716DA6BA248C581F001B74E2 /* Theme+Elements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Theme+Elements.swift"; sourceTree = "<group>"; };
+		716DA6C1248D7E55001B74E2 /* PostStatusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostStatusViewController.swift; sourceTree = "<group>"; };
+		716DA6C3248D7E69001B74E2 /* PostStatusPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostStatusPresenter.swift; sourceTree = "<group>"; };
+		716DA6C8248D899B001B74E2 /* PostStatusViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostStatusViewController.xib; sourceTree = "<group>"; };
+		716DA6CA248EE4D2001B74E2 /* UIViewController+Elements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Elements.swift"; sourceTree = "<group>"; };
+		716DA6CD248EE57D001B74E2 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		718BE8072486BA8000CA328B /* Aweh.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Aweh.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		718BE80A2486BA8000CA328B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		718BE80C2486BA8000CA328B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -74,20 +82,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		7157C21A24886D5B00F0A7F0 /* Repository */ = {
+		7157C21E24886E0700F0A7F0 /* Repository */ = {
 			isa = PBXGroup;
 			children = (
-				7157C21C24886DB400F0A7F0 /* HomeScreenRepository.swift */,
-			);
-			path = Repository;
-			sourceTree = "<group>";
-		};
-		7157C21E24886E0700F0A7F0 /* BaseRepository */ = {
-			isa = PBXGroup;
-			children = (
+				716DA6BD248D7DBE001B74E2 /* HomeScreen */,
 				7157C21F24886E2100F0A7F0 /* BaseRepository.swift */,
 			);
-			path = BaseRepository;
+			path = Repository;
 			sourceTree = "<group>";
 		};
 		7157C22124886E8B00F0A7F0 /* Data */ = {
@@ -114,25 +115,11 @@
 			path = Local;
 			sourceTree = "<group>";
 		};
-		7157C22624886EE900F0A7F0 /* Data */ = {
-			isa = PBXGroup;
-			children = (
-				7157C22724886EF300F0A7F0 /* Remote */,
-			);
-			path = Data;
-			sourceTree = "<group>";
-		};
-		7157C22724886EF300F0A7F0 /* Remote */ = {
-			isa = PBXGroup;
-			children = (
-				7157C22824886F0900F0A7F0 /* HomeScreenService.swift */,
-			);
-			path = Remote;
-			sourceTree = "<group>";
-		};
 		7157C22E24886FAE00F0A7F0 /* Feature */ = {
 			isa = PBXGroup;
 			children = (
+				716DA6C5248D7E91001B74E2 /* Shared */,
+				716DA6BE248D7E04001B74E2 /* PostStatus */,
 				718BE81E2486BA9600CA328B /* HomeScreen */,
 			);
 			path = Feature;
@@ -167,7 +154,8 @@
 		7162C60E24886307002D8ED4 /* Interactor */ = {
 			isa = PBXGroup;
 			children = (
-				71C78E53248869BD00E29082 /* HomeScreen */,
+				716DA6BC248D7D76001B74E2 /* HomeScreen */,
+				7162C60F24886320002D8ED4 /* HomeScreenInteractor.swift */,
 			);
 			path = Interactor;
 			sourceTree = "<group>";
@@ -178,6 +166,63 @@
 				7162C6122488637F002D8ED4 /* Status.swift */,
 			);
 			path = Entity;
+			sourceTree = "<group>";
+		};
+		716DA6BC248D7D76001B74E2 /* HomeScreen */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = HomeScreen;
+			sourceTree = "<group>";
+		};
+		716DA6BD248D7DBE001B74E2 /* HomeScreen */ = {
+			isa = PBXGroup;
+			children = (
+				7157C21C24886DB400F0A7F0 /* HomeScreenRepository.swift */,
+			);
+			path = HomeScreen;
+			sourceTree = "<group>";
+		};
+		716DA6BE248D7E04001B74E2 /* PostStatus */ = {
+			isa = PBXGroup;
+			children = (
+				716DA6C0248D7E2E001B74E2 /* View */,
+				716DA6BF248D7E1C001B74E2 /* Presenter */,
+			);
+			path = PostStatus;
+			sourceTree = "<group>";
+		};
+		716DA6BF248D7E1C001B74E2 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				716DA6C3248D7E69001B74E2 /* PostStatusPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		716DA6C0248D7E2E001B74E2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				716DA6C1248D7E55001B74E2 /* PostStatusViewController.swift */,
+				716DA6C8248D899B001B74E2 /* PostStatusViewController.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		716DA6C5248D7E91001B74E2 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				716DA6CC248EE55F001B74E2 /* Coordinator */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		716DA6CC248EE55F001B74E2 /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				716DA6CD248EE57D001B74E2 /* MainCoordinator.swift */,
+			);
+			path = Coordinator;
 			sourceTree = "<group>";
 		};
 		718BE7FE2486BA8000CA328B = {
@@ -202,9 +247,10 @@
 			isa = PBXGroup;
 			children = (
 				7157C22F248875EF00F0A7F0 /* Infrastructure */,
+				7162C60E24886307002D8ED4 /* Interactor */,
 				7157C22E24886FAE00F0A7F0 /* Feature */,
 				7157C22124886E8B00F0A7F0 /* Data */,
-				7157C21E24886E0700F0A7F0 /* BaseRepository */,
+				7157C21E24886E0700F0A7F0 /* Repository */,
 				7162C61124886369002D8ED4 /* Entity */,
 				718BE80A2486BA8000CA328B /* AppDelegate.swift */,
 				718BE80C2486BA8000CA328B /* SceneDelegate.swift */,
@@ -218,11 +264,8 @@
 		718BE81E2486BA9600CA328B /* HomeScreen */ = {
 			isa = PBXGroup;
 			children = (
-				7157C22624886EE900F0A7F0 /* Data */,
-				7157C21A24886D5B00F0A7F0 /* Repository */,
 				7162C60924884B93002D8ED4 /* Presenter */,
 				71C78E5424886A0000E29082 /* View */,
-				7162C60E24886307002D8ED4 /* Interactor */,
 			);
 			path = HomeScreen;
 			sourceTree = "<group>";
@@ -233,16 +276,9 @@
 				7157C2332488766F00F0A7F0 /* NSLayoutConstraints+Elements.swift */,
 				713549B0248BE45A0009EE6A /* UICollectionView+Elements.swift */,
 				716DA6BA248C581F001B74E2 /* Theme+Elements.swift */,
+				716DA6CA248EE4D2001B74E2 /* UIViewController+Elements.swift */,
 			);
 			path = Elements;
-			sourceTree = "<group>";
-		};
-		71C78E53248869BD00E29082 /* HomeScreen */ = {
-			isa = PBXGroup;
-			children = (
-				7162C60F24886320002D8ED4 /* HomeScreenInteractor.swift */,
-			);
-			path = HomeScreen;
 			sourceTree = "<group>";
 		};
 		71C78E5424886A0000E29082 /* View */ = {
@@ -354,6 +390,7 @@
 				718BE8142486BA8200CA328B /* Assets.xcassets in Resources */,
 				71ECFDFC2487187000943917 /* StatusCollectionViewCell.xib in Resources */,
 				718BE8122486BA8000CA328B /* Main.storyboard in Resources */,
+				716DA6C9248D899B001B74E2 /* PostStatusViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -392,12 +429,14 @@
 				7157C21D24886DB400F0A7F0 /* HomeScreenRepository.swift in Sources */,
 				718BE80F2486BA8000CA328B /* ViewController.swift in Sources */,
 				716DA6BB248C581F001B74E2 /* Theme+Elements.swift in Sources */,
-				7157C22924886F0900F0A7F0 /* HomeScreenService.swift in Sources */,
 				7162C61024886320002D8ED4 /* HomeScreenInteractor.swift in Sources */,
+				716DA6CE248EE57D001B74E2 /* MainCoordinator.swift in Sources */,
 				7162C60B24884BAB002D8ED4 /* HomeScreenPresenter.swift in Sources */,
 				7162C60D24884BBB002D8ED4 /* StatusViewModel.swift in Sources */,
 				7157C2342488766F00F0A7F0 /* NSLayoutConstraints+Elements.swift in Sources */,
 				713549B1248BE45A0009EE6A /* UICollectionView+Elements.swift in Sources */,
+				716DA6C4248D7E69001B74E2 /* PostStatusPresenter.swift in Sources */,
+				716DA6C2248D7E55001B74E2 /* PostStatusViewController.swift in Sources */,
 				718BE80B2486BA8000CA328B /* AppDelegate.swift in Sources */,
 				7157C22024886E2100F0A7F0 /* BaseRepository.swift in Sources */,
 				7162C6132488637F002D8ED4 /* Status.swift in Sources */,
@@ -407,6 +446,7 @@
 				713549B3248BE8F10009EE6A /* StatusCellPresenter.swift in Sources */,
 				7157C22524886EB300F0A7F0 /* AwehService.swift in Sources */,
 				718BE80D2486BA8000CA328B /* SceneDelegate.swift in Sources */,
+				716DA6CB248EE4D2001B74E2 /* UIViewController+Elements.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

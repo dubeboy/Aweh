@@ -38,14 +38,9 @@ class StatusCollectionViewCell: UICollectionViewCell {
     }
     
     private func configureContentView() {
-        contentView.backgroundColor = .systemGray6
+        contentView.backgroundColor = .systemBackground
         contentView.clipsToBounds = true
-        contentView.layer.cornerRadius = 5
-        contentView.layer.shadowColor = UIColor.systemGray2.cgColor
-        contentView.layer.shadowOpacity = 1
-        contentView.layer.shadowOffset = .zero
-        contentView.layer.shadowRadius = 5
-        
+
     }
     
     private func configureCell() {

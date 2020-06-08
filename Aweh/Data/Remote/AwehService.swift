@@ -12,3 +12,18 @@ import Foundation
 struct AwehService {
     
 }
+
+// MARK: AwehService + PostStatus
+extension AwehService {
+    
+}
+
+// MARK: AwehService + Status
+extension AwehService {
+    
+}
+
+// MARK: AwehService + Stories
+extension AwehService {
+    
+}

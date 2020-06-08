@@ -20,7 +20,7 @@ struct StatusViewModel: Equatable {
 extension StatusViewModel {
     static func transform(from status: Status) -> Self {
         
-        return StatusViewModel(
+        StatusViewModel(
             status: NSAttributedString(string: status.status),
             userName: status.userName,
             statusImage: UIImage(named: status.statusImageLink ?? ""),

@@ -23,27 +23,58 @@ class ViewController: UIViewController {
         }
     }
     
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var collectionView: UICollectionView! {
+        didSet {
+            collectionView.backgroundColor = .systemGray5
+            collectionView.collectionViewLayout = StatusCollectionViewFlowLayout()
+            
+            collectionView.register(
+                UINib(nibName: reuseIdentifier, bundle: nil),
+                forCellWithReuseIdentifier: reuseIdentifier
+            )
+            
+            collectionView.delegate = self
+            collectionView.dataSource = self
+        }
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .systemGray
         
-        view.backgroundColor = .systemBackground
-        collectionView.backgroundColor = .systemBackground
-        collectionView.collectionViewLayout = StatusCollectionViewFlowLayout()
-        
-        collectionView.register(
-            UINib(nibName: reuseIdentifier, bundle: nil),
-            forCellWithReuseIdentifier: reuseIdentifier
-        )
-        
-        
-        collectionView.delegate = self
-        collectionView.dataSource = self
+        navigationController?.title = "Some" // the next screen therofre will get this title
+//        navigationController?.toolbarItems = createToolbarItems()
+//        navigationController?.setToolbarItems(createToolbarItems(), animated: false)
+//        navigationController?.setToolbarHidden(false, animated: true)
+       
+    }
+    
+    func createToolbarItems() -> [UIBarButtonItem] {
+        return [
+            UIBarButtonItem(title: "Feed", style: .plain, target: self, action: #selector(goToFeed)),
+            UIBarButtonItem(title: "Notifications", style: .plain, target: self, action: #selector(goNotifications)),
+            UIBarButtonItem(title: "Settings", style: .plain, target: self, action: #selector(goProfile))
+        ]
     }
     
     @IBAction func postButtonAction(_ sender: Any) {
+        let viewController = PostStatusViewController()
+        present(viewController, animated: true, completion: nil)
+    }
+    
+    @objc func goToFeed() {
         
     }
+    
+    @objc func goProfile() {
+        
+    }
+    
+    @objc func goNotifications() {
+        
+    }
+    
 }
 
 
