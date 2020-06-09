@@ -16,9 +16,10 @@ extension UICollectionView {
     func deque<T: UICollectionViewCell>(_ `class`: T.Type, at indexPath: IndexPath) -> T {
         dequeueReusableCell(withReuseIdentifier: String(describing: `class`), for: indexPath) as! T
     }
-    
-//    var selectedCell: GroceryListItemCell {
-//        let indexPath = self.indexPathsForSelectedItems!.first!
-//        return self.cellForItem(at: indexPath) as! GroceryListItemCell
-//    }
+}
+
+extension UICollectionViewCell {
+    static var reuseIdentifier: String {
+        return String(describing: self)
+    }
 }

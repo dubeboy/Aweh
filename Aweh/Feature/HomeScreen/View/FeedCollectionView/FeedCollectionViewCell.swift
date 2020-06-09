@@ -8,7 +8,7 @@
 
 import UIKit
 
-class StatusCollectionViewCell: UICollectionViewCell {
+class FeedCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var userName: UILabel!
@@ -22,12 +22,21 @@ class StatusCollectionViewCell: UICollectionViewCell {
         configureCell()
     }
     
-    override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
-        let attributes = super.preferredLayoutAttributesFitting(layoutAttributes)
-        attributes.frame.size = calculateFrame()
-        return attributes
-    }
-    
+//    override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
+//        setNeedsLayout()
+//        layoutIfNeeded()
+//
+//         let size = contentView.systemLayoutSizeFitting(layoutAttributes.size)
+//
+//        let attributes = super.preferredLayoutAttributesFitting(layoutAttributes)
+//        var frame = attributes.frame
+//        frame.size.height = ceil(10)
+//        layoutAttributes.frame = frame
+//        setNeedsLayout()
+//        layoutIfNeeded()
+//        return layoutAttributes
+//    }
+//
     private func calculateFrame() -> CGSize {
         
         let imageHeight: CGFloat = statusImage.image == nil ? 0 : 150 // todo add these to global file
@@ -40,7 +49,6 @@ class StatusCollectionViewCell: UICollectionViewCell {
     private func configureContentView() {
         contentView.backgroundColor = .systemBackground
         contentView.clipsToBounds = true
-
     }
     
     private func configureCell() {

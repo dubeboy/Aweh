@@ -8,8 +8,10 @@
 
 import UIKit
 
-class PostStatusViewController: ViewController {
+class PostStatusViewController: UIViewController {
 
+    weak var coordinator: Coordinator?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
