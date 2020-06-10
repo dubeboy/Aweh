@@ -21,6 +21,7 @@ extension Storyborded where Self: UIViewController {
 }
 
 extension UIViewController: Storyborded {
+
     func pushViewController<T: UIViewController>(_ fromNib: T) {
         let viewController = T.instantiate()
         navigationController?.pushViewController(viewController, animated: true)
