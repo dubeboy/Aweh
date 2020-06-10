@@ -34,7 +34,6 @@ class FeedViewController: UIViewController {
                 forCellWithReuseIdentifier: reuseIdentifier
             )
             
-            collectionView.delegate = self
             collectionView.dataSource = self
         }
     }
@@ -70,16 +69,6 @@ class FeedViewController: UIViewController {
     @objc func goNotifications() {
         
     }
-    
-}
-
-
-
-extension FeedViewController: UICollectionViewDelegateFlowLayout {
-    
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//
-//    }
     
 }
 

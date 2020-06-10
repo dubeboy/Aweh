@@ -22,21 +22,19 @@ class FeedCollectionViewCell: UICollectionViewCell {
         configureCell()
     }
     
-//    override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
-//        setNeedsLayout()
-//        layoutIfNeeded()
+    override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
+        setNeedsLayout()
+        layoutIfNeeded()
 //
 //         let size = contentView.systemLayoutSizeFitting(layoutAttributes.size)
-//
-//        let attributes = super.preferredLayoutAttributesFitting(layoutAttributes)
-//        var frame = attributes.frame
-//        frame.size.height = ceil(10)
-//        layoutAttributes.frame = frame
-//        setNeedsLayout()
-//        layoutIfNeeded()
-//        return layoutAttributes
-//    }
-//
+
+        let attributes = super.preferredLayoutAttributesFitting(layoutAttributes)
+        var frame = attributes.frame
+        frame.size.height = ceil(10)
+        layoutAttributes.frame = frame
+        return layoutAttributes
+    }
+
     private func calculateFrame() -> CGSize {
         
         let imageHeight: CGFloat = statusImage.image == nil ? 0 : 150 // todo add these to global file
@@ -57,8 +55,6 @@ class FeedCollectionViewCell: UICollectionViewCell {
     }
     
     private func configureProfileImage() {
-        profileImage.clipsToBounds = true
-        profileImage.layer.cornerRadius = profileImage.frame.height / 2
-        profileImage.contentMode = .scaleAspectFill
+        profileImage.makeImageRound()
     }
 }

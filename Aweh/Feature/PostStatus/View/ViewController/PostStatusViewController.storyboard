@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Post Status View Controller-->
+        <scene sceneID="0Sc-aj-Puu">
+            <objects>
+                <viewController storyboardIdentifier="PostStatusViewController" id="Y7Y-es-53x" customClass="PostStatusViewController" customModule="Aweh" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="j8B-o1-yZb">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="3" translatesAutoresizingMaskIntoConstraints="NO" id="JCA-7C-nZO">
+                                <rect key="frame" x="16" y="60" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="XrB-LK-LKj"/>
+                                    <constraint firstAttribute="height" constant="30" id="cPW-5H-DbT"/>
+                                </constraints>
+                            </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="IAr-MR-OCF">
+                                <rect key="frame" x="54" y="60" width="344" height="802"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="4Qt-Vo-Ndz" firstAttribute="trailing" secondItem="IAr-MR-OCF" secondAttribute="trailing" constant="16" id="4Jc-CL-dfu"/>
+                            <constraint firstItem="4Qt-Vo-Ndz" firstAttribute="bottom" secondItem="IAr-MR-OCF" secondAttribute="bottom" id="Frg-3M-ADn"/>
+                            <constraint firstItem="IAr-MR-OCF" firstAttribute="leading" secondItem="JCA-7C-nZO" secondAttribute="trailing" constant="8" id="TjA-hT-b4n"/>
+                            <constraint firstItem="JCA-7C-nZO" firstAttribute="leading" secondItem="4Qt-Vo-Ndz" secondAttribute="leading" constant="16" id="pJ9-do-vZh"/>
+                            <constraint firstItem="JCA-7C-nZO" firstAttribute="top" secondItem="4Qt-Vo-Ndz" secondAttribute="top" constant="16" id="seS-5n-sSY"/>
+                            <constraint firstItem="IAr-MR-OCF" firstAttribute="top" secondItem="4Qt-Vo-Ndz" secondAttribute="top" constant="16" id="xE2-9C-Phn"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="4Qt-Vo-Ndz"/>
+                    </view>
+                    <connections>
+                        <outlet property="profileImage" destination="JCA-7C-nZO" id="PqE-uC-50f"/>
+                        <outlet property="statusTextView" destination="IAr-MR-OCF" id="xHa-PZ-NJS"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oER-uc-hcW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="554" y="11"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="3" width="2448" height="3264"/>
+    </resources>
+</document>
