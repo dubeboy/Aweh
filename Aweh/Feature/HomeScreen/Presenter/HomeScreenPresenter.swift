@@ -24,10 +24,6 @@ protocol StoriesPresenter {
     
 }
 
-protocol PostStatusPresenter {
-    
-}
-
 class HomeScreenPresenter {
     
     var statusCellPresenter: FeedCellPresenter = FeedCellPresenter()

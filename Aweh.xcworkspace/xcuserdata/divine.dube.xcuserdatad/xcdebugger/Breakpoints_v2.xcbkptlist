@@ -61,16 +61,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "9532AEEF-EFB8-4AA1-8E57-BEE1C9A0CE22"
-            shouldBeEnabled = "Yes"
+            uuid = "36D9E020-7F4A-4616-8D13-30433120E6B1"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Aweh/SceneDelegate.swift"
+            filePath = "Aweh/Feature/PostStatus/View/PostStatusViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "22"
-            endingLineNumber = "22"
-            landmarkName = "scene(_:willConnectTo:options:)"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
+            landmarkName = "textViewShouldBeginEditing(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

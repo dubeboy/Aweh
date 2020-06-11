@@ -45,7 +45,41 @@ class PostStatusViewController: UIViewController {
     }
     
     @objc func getImages() {
+        let status = PHPhotoLibrary.authorizationStatus()
+        switch status {
+            case .authorized:
+            loadPhotos() // ask coordinator to opne the grid view
+            case .denied, .notDetermined:
+            // request permission
+            PHPhotoLibrary.requestAuthorization { status in
+                DispatchQueue.main.async {
+                    if status == PHAuthorizationStatus.authorized {
+                        self.loadPhotos()
+                    } else {
+                        self.noAuthorised()
+                    }
+                }
+            }
+            default:
+             // you are restricted fo  accessing from images
+            noAuthorised()
+        }
+    }
+    
+    private func noAuthorised() {
         
+    }
+    
+    private func loadPhotos() {
+        let options = PHFetchOptions()
+        options.predicate = NSPredicate(format: "mediaType = %d || mediaType = %d",
+                                        PHAssetMediaType.image.rawValue, PHAssetMediaType.video.rawValue)
+        options.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: true)]
+        let imagesAndVideos = PHAsset.fetchAssets(with: options)
+        print(imagesAndVideos.count)
+        for index in 0..<imagesAndVideos.count {
+            let asset = imagesAndVideos.object(at: index)
+        }
     }
     
     private func createToolBar() {
