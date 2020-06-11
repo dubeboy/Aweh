@@ -12,36 +12,26 @@ private let reuseIdentifier = "Cell"
 
 class PhotosCollectionViewCollectionViewController: UICollectionViewController {
     
+    let reuseIdentifier = PhotosCollectionViewCell.reuseIdentifier // are static computeed variable lazy?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        collectionView.register(PhotosCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        let flowLayout = collectionViewLayout as! UICollectionViewFlowLayout
+        flowLayout.minimumInteritemSpacing = 1 // Todo: - should be in theme
+        flowLayout.minimumLineSpacing = 1
+        flowLayout.sectionInset = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
+        
+        let size = collectionView.bounds.size
+        let leftRightInset = flowLayout.sectionInset.right + flowLayout.sectionInset.right
+        let interItemSpacing = flowLayout.minimumInteritemSpacing
+        
+        let cellSize = size.width - leftRightInset - (interItemSpacing * 2)
+        flowLayout.itemSize = CGSize(width: cellSize, height: cellSize)
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Register cell classes
-        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-
-        // Do any additional setup after loading the view.
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
-
-    // MARK: UICollectionViewDataSource
-
-    override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
-
-
+ 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
         return 0

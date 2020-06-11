@@ -41,9 +41,7 @@ class FeedViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        navigationController?.title = "Some"
-       
+               
     }
     
     func createToolbarItems() -> [UIBarButtonItem] {
