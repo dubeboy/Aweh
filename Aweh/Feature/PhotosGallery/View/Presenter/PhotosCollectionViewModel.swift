@@ -7,3 +7,9 @@
 //
 
 import Foundation
+import Photos
+
+//class PhotosCollectionViewModel {
+//    var isSelected: Bool?
+//    var asset: PHAsset? // will be probably too slow
+//}

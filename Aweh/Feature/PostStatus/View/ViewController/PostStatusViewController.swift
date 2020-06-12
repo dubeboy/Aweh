@@ -24,7 +24,7 @@ class PostStatusViewController: UIViewController {
             profileImage.makeImageRound()
         }
     }
-    weak var coordinator: Coordinator?
+    weak var coordinator: PhotosGalleryCoordinator?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +32,8 @@ class PostStatusViewController: UIViewController {
         statusTextView.text = placeHolderText
         statusTextView.textColor = .systemGray2
         statusTextView.delegate = self
+        
+        title = "Post status"
     }
     
     
@@ -49,12 +51,12 @@ class PostStatusViewController: UIViewController {
             loadPhotos() // ask coordinator to opne the grid view
             case .denied, .notDetermined:
             // request permission
-            PHPhotoLibrary.requestAuthorization { status in
+            PHPhotoLibrary.requestAuthorization { [weak self] status in
                 DispatchQueue.main.async {
                     if status == PHAuthorizationStatus.authorized {
-                        self.loadPhotos()
+                        self?.loadPhotos()
                     } else {
-                        self.noAuthorised()
+                        self?.noAuthorised()
                     }
                 }
             }
@@ -65,11 +67,11 @@ class PostStatusViewController: UIViewController {
     }
     
     private func noAuthorised() {
-        
+       // show not authorise toast viewController
     }
     
     private func loadPhotos() {
-       
+        coordinator?.startPhotosGalleryViewController()
     }
     
     private func createToolBar() {
@@ -78,7 +80,7 @@ class PostStatusViewController: UIViewController {
         actionsToolBar.items = [
             UIBarButtonItem(title: "Add Images", style: .plain, target: self, action: #selector(getImages)),
             UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
-            UIBarButtonItem(title: "294/300", style: .plain, target: self, action: #selector(getImages))] // should be a custom UI
+            UIBarButtonItem(title: "294/300", style: .plain, target: self, action: #selector(getImages))] // should be a custom UI progress UI
         statusTextView.sizeToFit()
         statusTextView.inputAccessoryView = actionsToolBar
     }
