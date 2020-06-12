@@ -7,3 +7,7 @@
 //
 
 import Foundation
+
+protocol PostStatusPresenter {
+    var placeHolderText: String { get }
+}

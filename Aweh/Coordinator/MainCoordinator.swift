@@ -16,6 +16,7 @@ protocol Coordinator: AnyObject {
     func start()
 }
 
+// make this an abstract class
 class MainCoordinator: NSObject, Coordinator, UINavigationControllerDelegate {
     var childCoordinators = [Coordinator]()
     var navigationController: UINavigationController
@@ -54,5 +55,17 @@ class MainCoordinator: NSObject, Coordinator, UINavigationControllerDelegate {
         // means we are poping view Controller
        
 //       childDidFinish(child: fromViewController) // how do we make the poped to view controller do some action // might also pass the delegate!
+    }
+}
+
+protocol Coordinatable: AnyObject {
+    var coordinator: Coordinator? { get set }
+}
+
+extension MainCoordinator {
+    func startViewController<T: UIViewController>(viewController: T.Type) where T: Coordinatable {
+        let viewController = T.instantiate()
+        viewController.coordinator = self
+        navigationController.present(viewController, animated: true, completion: nil)
     }
 }

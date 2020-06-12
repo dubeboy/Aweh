@@ -56,7 +56,7 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>NSAppleMusicUsageDescription</key>
-	<string>The app needs to access to your media so that you can select the photos and video you want to share.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>The app needs to access to your media so that you can select photos and video you would to share.</string>
 </dict>
 </plist>
