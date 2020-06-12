@@ -16,8 +16,8 @@ extension MainCoordinator: PostStatusCoordinator  {
     func startPostStatusViewController() {
         let viewController = PostStatusViewController.instantiate()
         viewController.coordinator = self
-        navigationController.present(viewController, animated: true, completion: nil)
-//        navigationController.pushViewController(viewController, animated: true)
+//        navigationController.present(viewController, animated: true, completion: nil)
+        navigationController.pushViewController(viewController, animated: true)
     }
     
 

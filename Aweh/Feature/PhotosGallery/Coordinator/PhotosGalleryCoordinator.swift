@@ -8,12 +8,16 @@
 
 import Foundation
 
-protocol PhotosGalleryCoordinator {
+protocol PhotosGalleryCoordinator: AnyObject {
     func startPhotosGalleryViewController()
 }
 
 extension MainCoordinator: PhotosGalleryCoordinator {
     func startPhotosGalleryViewController() {
-        startViewController(viewController: PhotosCollectionViewController.self)
+        let viewController = PhotosCollectionViewController.instantiate()
+//        viewController.modalPresentationStyle = .fullScreen
+        viewController.coordinator = self
+//        navigationController.present(viewController, animated: true, completion: nil)
+        navigationController.pushViewController(viewController, animated: true)
     }
 }

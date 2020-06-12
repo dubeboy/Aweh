@@ -33,7 +33,7 @@ class FeedViewController: UIViewController {
                 UINib(nibName: reuseIdentifier, bundle: nil),
                 forCellWithReuseIdentifier: reuseIdentifier
             )
-            
+                        
             collectionView.dataSource = self
         }
     }
@@ -41,7 +41,7 @@ class FeedViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-               
+        collectionView.reloadData() // initiate the load data
     }
     
     func createToolbarItems() -> [UIBarButtonItem] {

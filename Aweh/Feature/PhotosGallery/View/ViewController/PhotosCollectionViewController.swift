@@ -10,73 +10,99 @@ import UIKit
 
 private let reuseIdentifier = "Cell"
 
-class PhotosCollectionViewController: UICollectionViewController, Coordinatable {
+class PhotosCollectionViewController: UICollectionViewController {
     
     var coordinator: Coordinator?
-    
-    
-    let reuseIdentifier = PhotosCollectionViewCell.reuseIdentifier // are static computeed variable lazy?
+    let presenter: PhotosCollectionViewPresenter = PhotosCollectionViewPresenterImplemantation()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Photos & Videos"
+        setUpCollectionView()
         
-        collectionView.register(PhotosCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Select", style: .plain, target: self, action: #selector(enableSelection))
+    }
+    
+    @objc func enableSelection() {
+        
+    }
+    
+    private func setUpCollectionView() {
+        collectionView.register(PhotosCollectionViewCell.self)
+        collectionView.allowsMultipleSelection = true
+        
         let flowLayout = collectionViewLayout as! UICollectionViewFlowLayout
         flowLayout.minimumInteritemSpacing = 1 // Todo: - should be in theme
         flowLayout.minimumLineSpacing = 1
-        flowLayout.sectionInset = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
+        flowLayout.sectionInset = UIEdgeInsets(top: 1, left: 1, bottom: 1, right: 1)
         
         let size = collectionView.bounds.size
         let leftRightInset = flowLayout.sectionInset.right + flowLayout.sectionInset.right
         let interItemSpacing = flowLayout.minimumInteritemSpacing
         
-        let cellSize = size.width - leftRightInset - (interItemSpacing * 2)
-        flowLayout.itemSize = CGSize(width: cellSize, height: cellSize)
-
+        let cellSize = (size.width - leftRightInset - (interItemSpacing * 2)) / 3
+        let itemSize = CGSize(width: cellSize, height: cellSize)
+        flowLayout.itemSize = itemSize
+        
+        presenter.loadImages(for: size) { count in
+            collectionView.reloadData()
+        }
+    }
+    
+    @objc func cancel() {
+        print("canecel")
+        dismiss(animated: true, completion: nil)
     }
  
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return 0
+        return presenter.imageCount()
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
-    
-        // Configure the cell
-    
+        
+        // should move this to the cell presenter
+        let cell = collectionView.deque(PhotosCollectionViewCell.self, at: indexPath)
+        
+        let asset = presenter.getItem(at: indexPath)
+        cell.representationItemIndetifier = asset?.localIdentifier ?? ""
+        
+        // check memory leak
+       presenter.getImage(
+            at: indexPath,
+            targetSize: cell.bounds.size
+       ) { image, isSelected in
+            if cell.representationItemIndetifier == asset?.localIdentifier ?? "" {
+                cell.isSelected = isSelected
+                cell.imageView.image = image
+            }
+                           
+        }
         return cell
     }
-
-    // MARK: UICollectionViewDelegate
-
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
     
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath)!
+        presenter.didSelectItem(at: indexPath) { selectionState in
+            switch selectionState {
+                case .select(let isSelected):
+                    cell.isSelected = isSelected
+                case .show:
+                    showImage(at: indexPath)
+            }
+        }
     }
-    */
     
+    private func showImage(at indexPath: IndexPath) {
+        navigationController?.isToolbarHidden = false
+        navigationController?.hidesBarsOnTap = true
+        if asset.mediaType == .video {
+            toolbarItems = [favoriteButton, space, playButton, space, trashButton]
+        } else {
+            // In iOS, present both stills and Live Photos the same way, because
+            // PHLivePhotoView provides the same gesture-based UI as in the Photos app.
+            toolbarItems = [favoriteButton, space, trashButton]
+        }
+    }
 }
+

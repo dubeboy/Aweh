@@ -58,14 +58,14 @@ class MainCoordinator: NSObject, Coordinator, UINavigationControllerDelegate {
     }
 }
 
-protocol Coordinatable: AnyObject {
-    var coordinator: Coordinator? { get set }
-}
+//protocol Coordinatable: AnyObject {
+//    var coordinator: Coordinator? { get set }
+//}
 
-extension MainCoordinator {
-    func startViewController<T: UIViewController>(viewController: T.Type) where T: Coordinatable {
-        let viewController = T.instantiate()
-        viewController.coordinator = self
-        navigationController.present(viewController, animated: true, completion: nil)
-    }
-}
+//extension Coordinator {
+//    func startViewController<T: UIViewController>(viewController: T.Type) where T: Coordinatable {
+//        let viewController = T.instantiate()
+//        viewController.coordinator = self
+//        navigationController.present(viewController, animated: true, completion: nil)
+//    }
+//}
