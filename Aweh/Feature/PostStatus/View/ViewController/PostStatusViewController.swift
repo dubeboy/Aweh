@@ -39,9 +39,7 @@ class PostStatusViewController: UIViewController {
         super.viewDidAppear(true)
         
          statusTextView.becomeFirstResponder()
-        
-        
-        
+
     }
     
     @objc func getImages() {
@@ -71,15 +69,7 @@ class PostStatusViewController: UIViewController {
     }
     
     private func loadPhotos() {
-        let options = PHFetchOptions()
-        options.predicate = NSPredicate(format: "mediaType = %d || mediaType = %d",
-                                        PHAssetMediaType.image.rawValue, PHAssetMediaType.video.rawValue)
-        options.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: true)]
-        let imagesAndVideos = PHAsset.fetchAssets(with: options)
-        print(imagesAndVideos.count)
-        for index in 0..<imagesAndVideos.count {
-            let asset = imagesAndVideos.object(at: index)
-        }
+       
     }
     
     private func createToolBar() {

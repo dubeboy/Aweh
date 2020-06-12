@@ -10,7 +10,10 @@ import UIKit
 
 private let reuseIdentifier = "Cell"
 
-class PhotosCollectionViewCollectionViewController: UICollectionViewController {
+class PhotosCollectionViewController: UICollectionViewController, Coordinatable {
+    
+    var coordinator: Coordinator?
+    
     
     let reuseIdentifier = PhotosCollectionViewCell.reuseIdentifier // are static computeed variable lazy?
     
