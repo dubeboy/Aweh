@@ -12,8 +12,8 @@ import Photos
 class PostStatusViewController: UIViewController {
     
     var placeHolderText = "Aweh!!! What's poppin'?"
-    var viewJustLoaded: Bool = true
 
+    @IBOutlet weak var imagesStackView: UIStackView!
     @IBOutlet weak var statusTextView: UITextView! {
         didSet {
             createToolBar()
@@ -39,9 +39,13 @@ class PostStatusViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        
          statusTextView.becomeFirstResponder()
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillAppear), name: UIResponder.keyboardWillShowNotification, object: nil)
 
+    }
+    
+    @objc func keyboardWillAppear(notification: NSNotification) {
+        
     }
     
     @objc func getImages() {
@@ -71,7 +75,10 @@ class PostStatusViewController: UIViewController {
     }
     
     private func loadPhotos() {
-        coordinator?.startPhotosGalleryViewController()
+        // test this out for string reference cycles
+        coordinator?.startPhotosGalleryViewController { [weak self] assets in
+            self?.didGetAssets(assets: assets)
+        }
     }
     
     private func createToolBar() {
@@ -84,8 +91,26 @@ class PostStatusViewController: UIViewController {
         statusTextView.sizeToFit()
         statusTextView.inputAccessoryView = actionsToolBar
     }
+    // MARK: - Create stackview
+    // maybe this should be a view controller directly so that we can manipulate it etc and in a collection view
+    private func didGetAssets(assets: [String: PHAsset]) {
+        let rect = CGRect(x: 0, y: 0, width: 80, height: 100)
+        let imageManager = PHImageManager.default()
+        for (_, asset) in assets {
+            let imageView = UIImageView(frame: rect)
+            imageView.layer.cornerRadius = 10
+            imageView.sizeToFit()
+//            imageView.contentMode = .scaleAspectFill
+            
+            imageManager.requestImage(for: asset, targetSize: rect.size, contentMode: .aspectFill, options: nil) { [weak self] image, _ in
+                imageView.image = image
+                self?.imagesStackView.addArrangedSubview(imageView)
+            }
+        }
+    }
 }
 
+//MARK: - extensions
 extension PostStatusViewController: UITextViewDelegate {
     
     func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {

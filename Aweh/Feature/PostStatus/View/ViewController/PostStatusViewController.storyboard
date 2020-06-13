@@ -29,12 +29,21 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="RBJ-UA-lgE">
+                                <rect key="frame" x="54" y="746" width="340" height="116"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="116" id="ujZ-3r-y91"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="4Qt-Vo-Ndz" firstAttribute="trailing" secondItem="IAr-MR-OCF" secondAttribute="trailing" constant="16" id="4Jc-CL-dfu"/>
-                            <constraint firstItem="4Qt-Vo-Ndz" firstAttribute="bottom" secondItem="IAr-MR-OCF" secondAttribute="bottom" id="Frg-3M-ADn"/>
+                            <constraint firstItem="RBJ-UA-lgE" firstAttribute="trailing" secondItem="j8B-o1-yZb" secondAttribute="trailingMargin" id="BsU-i2-HQe"/>
+                            <constraint firstItem="RBJ-UA-lgE" firstAttribute="bottom" secondItem="4Qt-Vo-Ndz" secondAttribute="bottom" id="Ilr-iE-Tcz"/>
                             <constraint firstItem="IAr-MR-OCF" firstAttribute="leading" secondItem="JCA-7C-nZO" secondAttribute="trailing" constant="8" id="TjA-hT-b4n"/>
+                            <constraint firstItem="4Qt-Vo-Ndz" firstAttribute="bottom" secondItem="IAr-MR-OCF" secondAttribute="bottom" id="VOt-s1-NlJ"/>
+                            <constraint firstItem="RBJ-UA-lgE" firstAttribute="leading" secondItem="IAr-MR-OCF" secondAttribute="leading" id="hyK-N3-bRt"/>
                             <constraint firstItem="JCA-7C-nZO" firstAttribute="leading" secondItem="4Qt-Vo-Ndz" secondAttribute="leading" constant="16" id="pJ9-do-vZh"/>
                             <constraint firstItem="JCA-7C-nZO" firstAttribute="top" secondItem="4Qt-Vo-Ndz" secondAttribute="top" constant="16" id="seS-5n-sSY"/>
                             <constraint firstItem="IAr-MR-OCF" firstAttribute="top" secondItem="4Qt-Vo-Ndz" secondAttribute="top" constant="16" id="xE2-9C-Phn"/>
@@ -42,13 +51,14 @@
                         <viewLayoutGuide key="safeArea" id="4Qt-Vo-Ndz"/>
                     </view>
                     <connections>
+                        <outlet property="imagesStackView" destination="RBJ-UA-lgE" id="SUW-m7-4qG"/>
                         <outlet property="profileImage" destination="JCA-7C-nZO" id="PqE-uC-50f"/>
                         <outlet property="statusTextView" destination="IAr-MR-OCF" id="xHa-PZ-NJS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oER-uc-hcW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="554" y="11"/>
+            <point key="canvasLocation" x="553.62318840579712" y="10.714285714285714"/>
         </scene>
     </scenes>
     <resources>

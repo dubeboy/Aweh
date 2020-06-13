@@ -14,10 +14,12 @@ protocol Coordinator: AnyObject {
     var navigationController: UINavigationController { get set}
 
     func start()
+    func pop()
 }
 
 // make this an abstract class
 class MainCoordinator: NSObject, Coordinator, UINavigationControllerDelegate {
+    
     var childCoordinators = [Coordinator]()
     var navigationController: UINavigationController
     
@@ -55,6 +57,10 @@ class MainCoordinator: NSObject, Coordinator, UINavigationControllerDelegate {
         // means we are poping view Controller
        
 //       childDidFinish(child: fromViewController) // how do we make the poped to view controller do some action // might also pass the delegate!
+    }
+    
+    func pop() {
+        navigationController.popViewController(animated: true)
     }
 }
 
