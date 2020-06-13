@@ -12,13 +12,10 @@ import Photos
 class PostStatusViewController: UIViewController {
     
     var placeHolderText = "Aweh!!! What's poppin'?"
+    let containerAccessoryView: UIStackView = UIStackView()
 
-    @IBOutlet weak var imagesStackView: UIStackView!
-    @IBOutlet weak var statusTextView: UITextView! {
-        didSet {
-            createToolBar()
-        }
-    }
+    @IBOutlet weak var statusTextBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var statusTextView: UITextView!
     @IBOutlet weak var profileImage: UIImageView! {
         didSet {
             profileImage.makeImageRound()
@@ -28,24 +25,25 @@ class PostStatusViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        title = "Post status"
 
         statusTextView.text = placeHolderText
         statusTextView.textColor = .systemGray2
         statusTextView.delegate = self
         
-        title = "Post status"
+        containerAccessoryView.widthAnchor --> statusTextView.bounds.width
+        containerAccessoryView.heightAnchor --> 50 // TODO: should find an elgant solution to this
+        statusTextView.inputAccessoryView = createToolBar()
+        statusTextView.sizeToFit()
+        
+       
     }
-    
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillAppear), name: UIResponder.keyboardWillShowNotification, object: nil)
-         statusTextView.becomeFirstResponder()
+        statusTextView.becomeFirstResponder()
 
-    }
-    
-    @objc func keyboardWillAppear(notification: NSNotification) {
-//        guard let userInfo 
     }
     
     @objc func getImages() {
@@ -81,20 +79,23 @@ class PostStatusViewController: UIViewController {
         }
     }
     
-    private func createToolBar() {
+    private func createToolBar() -> UIToolbar {
+  
         let actionsToolBar = UIToolbar(frame:CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50))
         actionsToolBar.barStyle = .default
+       
         actionsToolBar.items = [
             UIBarButtonItem(title: "Add Images", style: .plain, target: self, action: #selector(getImages)),
             UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
-            UIBarButtonItem(title: "294/300", style: .plain, target: self, action: #selector(getImages))] // should be a custom UI progress UI
-        statusTextView.sizeToFit()
-        statusTextView.inputAccessoryView = actionsToolBar
+            // should be a custom UI progress UI
+            UIBarButtonItem(title: "294/300", style: .plain, target: self, action: #selector(getImages))]
+        return actionsToolBar
     }
-    // MARK: - Create stackview
-    // maybe this should be a view controller directly so that we can manipulate it etc and in a collection view
+    
     private func didGetAssets(assets: [String: PHAsset]) {
-       
+       let assetsView = AssetsHorizontalListView(assets: assets)
+       containerAccessoryView.heightAnchor --> 150
+       containerAccessoryView.addArrangedSubview(assetsView)
     }
 }
 

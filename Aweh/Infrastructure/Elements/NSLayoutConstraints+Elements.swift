@@ -12,7 +12,7 @@ import UIKit
 // leading adges -| view or |-
 
 infix operator -->
-infix operator <--
+//infix operator <--
 
 func -->(lhs: UIView, rhs: UIView) {
     lhs.leadingAnchor --> rhs.leadingAnchor

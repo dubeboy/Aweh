@@ -1,5 +1,5 @@
 //
-//  AssetsList.swift
+//  AssetsHorizontalListView.swift
 //  Aweh
 //
 //  Created by Divine.Dube on 2020/06/13.
@@ -9,7 +9,7 @@
 import UIKit
 import Photos
 
-class AssetsList: UIView {
+class AssetsHorizontalListView: UIView {
     let scrollView: UIScrollView = UIScrollView()
     let stackView: UIStackView = UIStackView()
     
@@ -23,24 +23,25 @@ class AssetsList: UIView {
         self.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(scrollView)
         scrollView.addSubview(stackView)
+        scrollView.contentSize = self.bounds.size
         
         self.backgroundColor = UIColor.green // TODO: - debugging
         
         scrollView --> self
-        stackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor).isActive = true
-        stackView.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
-        stackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
+        stackView.leadingAnchor --> scrollView.leadingAnchor
+        stackView.topAnchor --> scrollView.topAnchor
+        stackView.bottomAnchor --> scrollView.bottomAnchor
+        
         stackView.alignment = .leading
         stackView.distribution = .fillProportionally
-        
-        scrollView.contentSize = self.bounds.size
-        
-        scrollView.widthAnchor.constraint(equalToConstant: 80).isActive = true
-        
+        stackView.spacing = 8
+    
         let rect = CGRect(x: 0, y: 0, width: 80, height: 100)
         let imageManager = PHImageManager.default()
         for (_, asset) in assets {
             let imageView = UIImageView(frame: rect)
+            imageView.widthAnchor --> 80
+            imageView.heightAnchor --> 100
             imageView.layer.cornerRadius = 10
             imageView.contentMode = .scaleAspectFill
             
