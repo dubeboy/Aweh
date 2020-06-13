@@ -94,7 +94,7 @@ class PostStatusViewController: UIViewController {
     
     private func didGetAssets(assets: [String: PHAsset]) {
        let assetsView = AssetsHorizontalListView(assets: assets)
-       containerAccessoryView.heightAnchor --> 150
+       containerAccessoryView.heightAnchor --> 100
        containerAccessoryView.addArrangedSubview(assetsView)
     }
 }
