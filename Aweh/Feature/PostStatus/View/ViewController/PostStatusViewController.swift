@@ -39,13 +39,13 @@ class PostStatusViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-         statusTextView.becomeFirstResponder()
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillAppear), name: UIResponder.keyboardWillShowNotification, object: nil)
+         statusTextView.becomeFirstResponder()
 
     }
     
     @objc func keyboardWillAppear(notification: NSNotification) {
-        
+//        guard let userInfo 
     }
     
     @objc func getImages() {
@@ -94,19 +94,7 @@ class PostStatusViewController: UIViewController {
     // MARK: - Create stackview
     // maybe this should be a view controller directly so that we can manipulate it etc and in a collection view
     private func didGetAssets(assets: [String: PHAsset]) {
-        let rect = CGRect(x: 0, y: 0, width: 80, height: 100)
-        let imageManager = PHImageManager.default()
-        for (_, asset) in assets {
-            let imageView = UIImageView(frame: rect)
-            imageView.layer.cornerRadius = 10
-            imageView.sizeToFit()
-//            imageView.contentMode = .scaleAspectFill
-            
-            imageManager.requestImage(for: asset, targetSize: rect.size, contentMode: .aspectFill, options: nil) { [weak self] image, _ in
-                imageView.image = image
-                self?.imagesStackView.addArrangedSubview(imageView)
-            }
-        }
+       
     }
 }
 
