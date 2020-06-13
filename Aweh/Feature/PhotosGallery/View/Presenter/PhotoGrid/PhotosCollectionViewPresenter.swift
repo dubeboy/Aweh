@@ -17,9 +17,6 @@ enum SelectionType {
 
 
 protocol PhotosCollectionViewPresenter {
-    
-    var multiSelectionEnabled: Bool { get }
-    
     func loadImages(for size: CGSize, imageCount: (_ count: Int) -> Void)
     func getImage(at indexPath: IndexPath,
                   targetSize: CGSize,
@@ -27,10 +24,12 @@ protocol PhotosCollectionViewPresenter {
     func imageCount() -> Int
     func didSelectItem(at index: IndexPath, selectionState: (_ isSelected: SelectionType) -> Void)
     func getItem(at index: IndexPath) -> PHAsset?
-    
+    func selectMode(mode: (_ selectionMode: Bool) -> Void)
+    func done(images: (_ selectedImages: [String: PHAsset]) -> Void)
 }
 
 class PhotosCollectionViewPresenterImplemantation: PhotosCollectionViewPresenter {
+
     var multiSelectionEnabled: Bool = false
     private let manager = PHImageManager.default()
     private var images: PHFetchResult<PHAsset>?
@@ -88,5 +87,15 @@ class PhotosCollectionViewPresenterImplemantation: PhotosCollectionViewPresenter
     
     func getItem(at index: IndexPath) -> PHAsset? {
         return images?.object(at: index.item)
+    }
+    
+    func selectMode(mode: (_ selectionMode: Bool) -> Void) {
+        multiSelectionEnabled = !multiSelectionEnabled
+        selectedImages.removeAll()
+        mode(multiSelectionEnabled)
+    }
+    
+    func done(images: (_ selectedImages: [String: PHAsset]) -> Void) {
+        images(selectedImages)
     }
 }

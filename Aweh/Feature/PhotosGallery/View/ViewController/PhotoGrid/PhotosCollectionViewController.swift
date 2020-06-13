@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Photos
 
 private let reuseIdentifier = "Cell"
 
@@ -14,22 +15,37 @@ class PhotosCollectionViewController: UICollectionViewController {
     
     var coordinator: Coordinator?
     let presenter: PhotosCollectionViewPresenter = PhotosCollectionViewPresenterImplemantation()
+    var selectButton: UIBarButtonItem!
+    var completion: (([String: PHAsset]) -> Void)?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Photos & Videos"
         setUpCollectionView()
+        selectButton = UIBarButtonItem(title: "Select", style: .plain, target: self, action: #selector(enableSelection))
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Select", style: .plain, target: self, action: #selector(enableSelection))
+        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(done))
+        navigationItem.leftBarButtonItem = doneButton
+        navigationItem.rightBarButtonItem = selectButton
     }
     
     @objc func enableSelection() {
-        
+        presenter.selectMode { isInSelection in
+            collectionView.allowsMultipleSelection = isInSelection  // todo: should also unselct all
+            selectButton.title = isInSelection ? "UnSelect" : "Select"
+        }
+    }
+    
+    @objc func done() {
+        presenter.done { selectedImages in
+            completion?(selectedImages)
+            coordinator?.pop()
+        }
     }
     
     private func setUpCollectionView() {
         collectionView.register(PhotosCollectionViewCell.self)
-        collectionView.allowsMultipleSelection = true
+        
         
         let flowLayout = collectionViewLayout as! UICollectionViewFlowLayout
         flowLayout.minimumInteritemSpacing = 1 // Todo: - should be in theme
@@ -48,12 +64,7 @@ class PhotosCollectionViewController: UICollectionViewController {
             collectionView.reloadData()
         }
     }
-    
-    @objc func cancel() {
-        print("canecel")
-        dismiss(animated: true, completion: nil)
-    }
- 
+
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
         return presenter.imageCount()
@@ -94,15 +105,15 @@ class PhotosCollectionViewController: UICollectionViewController {
     }
     
     private func showImage(at indexPath: IndexPath) {
-        navigationController?.isToolbarHidden = false
-        navigationController?.hidesBarsOnTap = true
-        if asset.mediaType == .video {
-            toolbarItems = [favoriteButton, space, playButton, space, trashButton]
-        } else {
-            // In iOS, present both stills and Live Photos the same way, because
-            // PHLivePhotoView provides the same gesture-based UI as in the Photos app.
-            toolbarItems = [favoriteButton, space, trashButton]
-        }
+//        navigationController?.isToolbarHidden = false
+//        navigationController?.hidesBarsOnTap = true
+//        if asset.mediaType == .video {
+//            toolbarItems = [favoriteButton, space, playButton, space, trashButton]
+//        } else {
+//            // In iOS, present both stills and Live Photos the same way, because
+//            // PHLivePhotoView provides the same gesture-based UI as in the Photos app.
+//            toolbarItems = [favoriteButton, space, trashButton]
+//        }
     }
 }
 

@@ -9,3 +9,5 @@
 import Foundation
 
 // contraints --> 7
+// leading adges -| view or |-
+
