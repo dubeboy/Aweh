@@ -15,6 +15,8 @@ infix operator -->
 //infix operator <--
 
 func -->(lhs: UIView, rhs: UIView) {
+    lhs.translatesAutoresizingMaskIntoConstraints = false
+    rhs.translatesAutoresizingMaskIntoConstraints = false
     lhs.leadingAnchor --> rhs.leadingAnchor
     lhs.trailingAnchor --> rhs.trailingAnchor
     lhs.topAnchor --> rhs.topAnchor

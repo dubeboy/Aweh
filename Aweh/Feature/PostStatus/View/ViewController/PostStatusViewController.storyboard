@@ -22,28 +22,51 @@
                                     <constraint firstAttribute="height" constant="30" id="cPW-5H-DbT"/>
                                 </constraints>
                             </imageView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="IAr-MR-OCF">
-                                <rect key="frame" x="54" y="60" width="344" height="802"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uNJ-yE-JlV">
+                                <rect key="frame" x="54" y="60" width="344" height="786"/>
+                                <subviews>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="IAr-MR-OCF">
+                                        <rect key="frame" x="0.0" y="0.0" width="344" height="670"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x2R-Oh-eMq">
+                                        <rect key="frame" x="0.0" y="678" width="344" height="100"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="100" id="Dny-fP-S4Q"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="IAr-MR-OCF" secondAttribute="trailing" id="22i-vg-PM2"/>
+                                    <constraint firstItem="x2R-Oh-eMq" firstAttribute="top" secondItem="IAr-MR-OCF" secondAttribute="bottom" constant="8" id="5Bq-td-3Ub"/>
+                                    <constraint firstAttribute="bottom" secondItem="x2R-Oh-eMq" secondAttribute="bottom" constant="8" id="IBi-yv-N4h"/>
+                                    <constraint firstItem="IAr-MR-OCF" firstAttribute="top" secondItem="uNJ-yE-JlV" secondAttribute="top" id="VA5-Nh-8O8"/>
+                                    <constraint firstItem="IAr-MR-OCF" firstAttribute="leading" secondItem="uNJ-yE-JlV" secondAttribute="leading" id="b1S-u4-hgg"/>
+                                    <constraint firstAttribute="trailing" secondItem="x2R-Oh-eMq" secondAttribute="trailing" id="jc7-Sl-pzU"/>
+                                    <constraint firstItem="x2R-Oh-eMq" firstAttribute="leading" secondItem="uNJ-yE-JlV" secondAttribute="leading" id="xPd-dk-8aS"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="4Qt-Vo-Ndz" firstAttribute="trailing" secondItem="IAr-MR-OCF" secondAttribute="trailing" constant="16" id="4Jc-CL-dfu"/>
-                            <constraint firstItem="IAr-MR-OCF" firstAttribute="leading" secondItem="JCA-7C-nZO" secondAttribute="trailing" constant="8" id="TjA-hT-b4n"/>
-                            <constraint firstItem="4Qt-Vo-Ndz" firstAttribute="bottom" secondItem="IAr-MR-OCF" secondAttribute="bottom" id="VOt-s1-NlJ"/>
+                            <constraint firstItem="uNJ-yE-JlV" firstAttribute="top" secondItem="4Qt-Vo-Ndz" secondAttribute="top" constant="16" id="3kC-Hf-NBO"/>
+                            <constraint firstItem="4Qt-Vo-Ndz" firstAttribute="trailing" secondItem="uNJ-yE-JlV" secondAttribute="trailing" constant="16" id="HH6-OB-iAo"/>
+                            <constraint firstItem="4Qt-Vo-Ndz" firstAttribute="bottom" secondItem="uNJ-yE-JlV" secondAttribute="bottom" constant="16" id="Khr-pW-Ta5"/>
+                            <constraint firstItem="uNJ-yE-JlV" firstAttribute="leading" secondItem="JCA-7C-nZO" secondAttribute="trailing" constant="8" id="QgA-1L-WEe"/>
                             <constraint firstItem="JCA-7C-nZO" firstAttribute="leading" secondItem="4Qt-Vo-Ndz" secondAttribute="leading" constant="16" id="pJ9-do-vZh"/>
                             <constraint firstItem="JCA-7C-nZO" firstAttribute="top" secondItem="4Qt-Vo-Ndz" secondAttribute="top" constant="16" id="seS-5n-sSY"/>
-                            <constraint firstItem="IAr-MR-OCF" firstAttribute="top" secondItem="4Qt-Vo-Ndz" secondAttribute="top" constant="16" id="xE2-9C-Phn"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="4Qt-Vo-Ndz"/>
                     </view>
                     <connections>
+                        <outlet property="assetsContainerView" destination="x2R-Oh-eMq" id="5O1-lg-OZ0"/>
                         <outlet property="profileImage" destination="JCA-7C-nZO" id="PqE-uC-50f"/>
-                        <outlet property="statusTextBottomConstraint" destination="VOt-s1-NlJ" id="SMY-xn-6Oz"/>
+                        <outlet property="statusTextBottomConstraint" destination="IBi-yv-N4h" id="auJ-og-MPk"/>
                         <outlet property="statusTextView" destination="IAr-MR-OCF" id="xHa-PZ-NJS"/>
                     </connections>
                 </viewController>

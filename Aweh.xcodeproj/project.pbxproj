@@ -18,6 +18,7 @@
 		7162C60D24884BBB002D8ED4 /* StatusViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7162C60C24884BBB002D8ED4 /* StatusViewModel.swift */; };
 		7162C61024886320002D8ED4 /* HomeScreenInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7162C60F24886320002D8ED4 /* HomeScreenInteractor.swift */; };
 		7162C6132488637F002D8ED4 /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7162C6122488637F002D8ED4 /* Status.swift */; };
+		7167C5C324959A9200B49096 /* ToastAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7167C5C224959A9200B49096 /* ToastAlert.swift */; };
 		716DA6BB248C581F001B74E2 /* Theme+Elements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716DA6BA248C581F001B74E2 /* Theme+Elements.swift */; };
 		716DA6C2248D7E55001B74E2 /* PostStatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716DA6C1248D7E55001B74E2 /* PostStatusViewController.swift */; };
 		716DA6C4248D7E69001B74E2 /* PostStatusPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716DA6C3248D7E69001B74E2 /* PostStatusPresenter.swift */; };
@@ -62,6 +63,7 @@
 		7162C60C24884BBB002D8ED4 /* StatusViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusViewModel.swift; sourceTree = "<group>"; };
 		7162C60F24886320002D8ED4 /* HomeScreenInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenInteractor.swift; sourceTree = "<group>"; };
 		7162C6122488637F002D8ED4 /* Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
+		7167C5C224959A9200B49096 /* ToastAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastAlert.swift; sourceTree = "<group>"; };
 		716DA6BA248C581F001B74E2 /* Theme+Elements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Theme+Elements.swift"; sourceTree = "<group>"; };
 		716DA6C1248D7E55001B74E2 /* PostStatusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostStatusViewController.swift; sourceTree = "<group>"; };
 		716DA6C3248D7E69001B74E2 /* PostStatusPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostStatusPresenter.swift; sourceTree = "<group>"; };
@@ -196,6 +198,14 @@
 			path = Entity;
 			sourceTree = "<group>";
 		};
+		7167C5C124959A7B00B49096 /* Toast */ = {
+			isa = PBXGroup;
+			children = (
+				7167C5C224959A9200B49096 /* ToastAlert.swift */,
+			);
+			path = Toast;
+			sourceTree = "<group>";
+		};
 		716DA6BC248D7D76001B74E2 /* HomeScreen */ = {
 			isa = PBXGroup;
 			children = (
@@ -241,6 +251,7 @@
 		716DA6C5248D7E91001B74E2 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				7167C5C124959A7B00B49096 /* Toast */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -594,6 +605,7 @@
 				713549B1248BE45A0009EE6A /* UICollectionView+Elements.swift in Sources */,
 				716DA6C4248D7E69001B74E2 /* PostStatusPresenter.swift in Sources */,
 				7198AC7F24918B36002029CF /* PhotosCollectionViewPresenter.swift in Sources */,
+				7167C5C324959A9200B49096 /* ToastAlert.swift in Sources */,
 				7198AC8124918BBD002029CF /* PhotosCollectionViewController.swift in Sources */,
 				71D6BAE12495737100F4B5D8 /* AssetsHorizontalListView.swift in Sources */,
 				716DA6C2248D7E55001B74E2 /* PostStatusViewController.swift in Sources */,

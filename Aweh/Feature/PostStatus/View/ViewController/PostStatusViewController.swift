@@ -12,8 +12,9 @@ import Photos
 class PostStatusViewController: UIViewController {
     
     var placeHolderText = "Aweh!!! What's poppin'?"
-    let containerAccessoryView: UIStackView = UIStackView()
-
+    weak var coordinator: PhotosGalleryCoordinator?
+    
+    @IBOutlet weak var assetsContainerView: UIView!
     @IBOutlet weak var statusTextBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var statusTextView: UITextView!
     @IBOutlet weak var profileImage: UIImageView! {
@@ -21,7 +22,7 @@ class PostStatusViewController: UIViewController {
             profileImage.makeImageRound()
         }
     }
-    weak var coordinator: PhotosGalleryCoordinator?
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,12 +33,20 @@ class PostStatusViewController: UIViewController {
         statusTextView.textColor = .systemGray2
         statusTextView.delegate = self
         
-        containerAccessoryView.widthAnchor --> statusTextView.bounds.width
-        containerAccessoryView.heightAnchor --> 50 // TODO: should find an elgant solution to this
         statusTextView.inputAccessoryView = createToolBar()
         statusTextView.sizeToFit()
-        
        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillApear),
+            name: UIResponder.keyboardWillShowNotification,
+            object: nil
+        )
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -46,6 +55,22 @@ class PostStatusViewController: UIViewController {
 
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    @objc func keyboardWillApear(notification: NSNotification) {
+        guard let userInfo = notification.userInfo else { return }
+        guard let keyboardSize = userInfo[UIResponder.keyboardFrameEndUserInfoKey]
+            as? NSValue else { return }
+        let keyboardFrame = keyboardSize.cgRectValue
+        
+        statusTextBottomConstraint.constant = keyboardFrame.size.height + 8
+    }
+    
+    
+    // TODO: - move to the presenter
     @objc func getImages() {
         let status = PHPhotoLibrary.authorizationStatus()
         switch status {
@@ -56,9 +81,9 @@ class PostStatusViewController: UIViewController {
             PHPhotoLibrary.requestAuthorization { [weak self] status in
                 DispatchQueue.main.async {
                     if status == PHAuthorizationStatus.authorized {
-                        self?.loadPhotos()
+                        self?.loadPhotos() // ask presenter to load photos
                     } else {
-                        self?.noAuthorised()
+                        self?.noAuthorised() // tell presenter that its not auth
                     }
                 }
             }
@@ -75,7 +100,7 @@ class PostStatusViewController: UIViewController {
     private func loadPhotos() {
         // test this out for string reference cycles
         coordinator?.startPhotosGalleryViewController { [weak self] assets in
-            self?.didGetAssets(assets: assets)
+            self?.didGetAssets(assets: assets) // tell presenter here!
         }
     }
     
@@ -94,12 +119,14 @@ class PostStatusViewController: UIViewController {
     
     private func didGetAssets(assets: [String: PHAsset]) {
        let assetsView = AssetsHorizontalListView(assets: assets)
-       containerAccessoryView.heightAnchor --> 100
-       containerAccessoryView.addArrangedSubview(assetsView)
+        let ass = assetsContainerView.subviews.last
+        ass?.removeFromSuperview()
+       assetsContainerView.addSubview(assetsView)
+       assetsView --> assetsContainerView
     }
 }
 
-//MARK: - extensions
+//MARK: - extension
 extension PostStatusViewController: UITextViewDelegate {
     
     func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
