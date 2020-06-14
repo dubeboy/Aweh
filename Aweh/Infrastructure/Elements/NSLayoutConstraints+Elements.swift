@@ -35,5 +35,9 @@ func -->(lhs: NSLayoutDimension, rhs: CGFloat) {
     lhs.constraint(equalToConstant: rhs).isActive = true
 }
 
+//func -->(lhs: NSLayoutDimension, rhs: NSLayoutDimension) {
+//    lhs.constraint(equalToConstant: rhs).isActive = true
+//}
+
 
 
