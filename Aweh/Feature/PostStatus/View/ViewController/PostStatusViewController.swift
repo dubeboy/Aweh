@@ -13,6 +13,8 @@ class PostStatusViewController: UIViewController {
     
     var placeHolderText = "Aweh!!! What's poppin'?"
     weak var coordinator: PhotosGalleryCoordinator?
+    var numberOfCharactorsButton: UIBarButtonItem =
+        UIBarButtonItem(title: "240", style: .plain, target: self, action: nil)
     
     @IBOutlet weak var assetsContainerView: UIView!
     @IBOutlet weak var statusTextBottomConstraint: NSLayoutConstraint!
@@ -37,7 +39,9 @@ class PostStatusViewController: UIViewController {
         statusTextView.sizeToFit()
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "POST", style: .plain, target: self, action: #selector(post))
-       
+        numberOfCharactorsButton.isEnabled = false
+        numberOfCharactorsButton.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.systemBlue], for: .disabled)
+//        numberOfCharactorsButton.tintColor = .systemBlue
     }
     
     @objc func post() {
@@ -118,7 +122,7 @@ class PostStatusViewController: UIViewController {
             UIBarButtonItem(title: "Add Images", style: .plain, target: self, action: #selector(getImages)),
             UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
             // should be a custom UI progress UI
-            UIBarButtonItem(title: "294/300", style: .plain, target: self, action: #selector(getImages))]
+            numberOfCharactorsButton]
         return actionsToolBar
     }
     
@@ -141,29 +145,26 @@ extension PostStatusViewController: UITextViewDelegate {
         return true
     }
     
-    // TODO: 1 - the fact that the text is highlightable
+    // TODO: - 1 fix the fact that the text is highlightable
 
-    
     // https://grokswift.com/uitextview-placeholder/
     // https://tij.me/blog/adding-placeholders-to-uitextviews-in-swift/
-    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        
+    func textView(_ textView: UITextView,
+                  shouldChangeTextIn range: NSRange,
+                  replacementText text: String) -> Bool {
         let newLength = textView.text.utf16.count + text.utf16.count - range.length
-        if newLength > 0
-        {
-            // check if the only text is the placeholder and remove it if needed
-            if textView.text == placeHolderText
-            {
-                if text.utf16.count == 0 // they hit the back button
-                {
-                    return false // ignore it
+        if newLength > 0 {
+            if newLength > 240 {
+                return false
+            } else if textView.text == placeHolderText {
+                if text.utf16.count == 0 {
+                    return false
                 }
                 applyNonPlaceholderStyle(textView)
                 textView.text = ""
             }
-        }
-        else  // no text, so show the placeholder
-        {
+            updateCharactorCount(length: newLength)
+        } else {
             applyPlaceholderStyle(textView, placeholderText: placeHolderText)
             moveCursorToFront(textView)
             return false
@@ -185,5 +186,10 @@ extension PostStatusViewController: UITextViewDelegate {
     private func moveCursorToFront(_ textView: UITextView) {
         textView.selectedRange = NSRange(location: 0, length: 0)
         
+    }
+    
+    private func updateCharactorCount(length: Int) {
+        numberOfCharactorsButton.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: length > 200 ? UIColor.systemRed : UIColor.systemBlue], for: .disabled)
+        numberOfCharactorsButton.title = "\((240)  - length)"
     }
 }
