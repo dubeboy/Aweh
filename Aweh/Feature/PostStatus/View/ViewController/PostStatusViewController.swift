@@ -35,7 +35,13 @@ class PostStatusViewController: UIViewController {
         
         statusTextView.inputAccessoryView = createToolBar()
         statusTextView.sizeToFit()
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "POST", style: .plain, target: self, action: #selector(post))
        
+    }
+    
+    @objc func post() {
+        print("post  it")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -52,7 +58,6 @@ class PostStatusViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         statusTextView.becomeFirstResponder()
-
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -119,8 +124,8 @@ class PostStatusViewController: UIViewController {
     
     private func didGetAssets(assets: [String: PHAsset]) {
        let assetsView = AssetsHorizontalListView(assets: assets)
-        let ass = assetsContainerView.subviews.last
-        ass?.removeFromSuperview()
+       let ass = assetsContainerView.subviews.last
+       ass?.removeFromSuperview() // TODO: - the view should auto update instead of removing from superview
        assetsContainerView.addSubview(assetsView)
        assetsView --> assetsContainerView
     }

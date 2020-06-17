@@ -13,7 +13,7 @@ private let reuseIdentifier = "Cell"
 
 class PhotosCollectionViewController: UICollectionViewController {
     
-    var coordinator: Coordinator?
+    var coordinator: AssetDetailCoordinator?
     let presenter: PhotosCollectionViewPresenter = PhotosCollectionViewPresenterImplemantation()
     var selectButton: UIBarButtonItem!
     var completion: (([String: PHAsset]) -> Void)?
@@ -105,15 +105,8 @@ class PhotosCollectionViewController: UICollectionViewController {
     }
     
     private func showImage(at indexPath: IndexPath) {
-//        navigationController?.isToolbarHidden = false
-//        navigationController?.hidesBarsOnTap = true
-//        if asset.mediaType == .video {
-//            toolbarItems = [favoriteButton, space, playButton, space, trashButton]
-//        } else {
-//            // In iOS, present both stills and Live Photos the same way, because
-//            // PHLivePhotoView provides the same gesture-based UI as in the Photos app.
-//            toolbarItems = [favoriteButton, space, trashButton]
-//        }
+        guard let asset = presenter.getItem(at: indexPath) else { return }
+        coordinator?.startAssetDetailViewController(asset: asset)
     }
 }
 
