@@ -106,7 +106,12 @@ class PhotosCollectionViewController: UICollectionViewController {
     
     private func showImage(at indexPath: IndexPath) {
         guard let asset = presenter.getItem(at: indexPath) else { return }
-        coordinator?.startAssetDetailViewController(asset: asset)
+        // TODO: - should use the apps naviagtor delegate to move to the 
+        coordinator?.startAssetDetailViewController(asset: asset) { asset in
+            // TODO: - can append this image to a list of selected images
+            self.completion?(asset)
+            self.coordinator?.pop()
+        }
     }
 }
 

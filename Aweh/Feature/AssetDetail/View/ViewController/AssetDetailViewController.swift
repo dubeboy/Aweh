@@ -48,8 +48,10 @@ class AssetDetailViewController: UIViewController {
     }
     
     @IBAction func addButtonClick(_ sender: UIBarButtonItem) {
-        
+        completion?([asset.localIdentifier: asset])
+        coordinator.pop()
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         // Set the appropriate toolbar items based on the media type of the asset.

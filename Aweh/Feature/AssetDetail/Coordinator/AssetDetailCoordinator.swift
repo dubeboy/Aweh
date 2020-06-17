@@ -10,14 +10,15 @@ import Foundation
 import Photos
 
 protocol AssetDetailCoordinator: Coordinator {
-    func startAssetDetailViewController(asset: PHAsset)
+    func startAssetDetailViewController(asset: PHAsset, completion: @escaping (([String: PHAsset]) -> Void))
 }
 
 extension MainCoordinator: AssetDetailCoordinator {
-    func startAssetDetailViewController(asset: PHAsset) {
+    func startAssetDetailViewController(asset: PHAsset, completion: @escaping (([String: PHAsset]) -> Void)) {
         let viewController = AssetDetailViewController.instantiate()
         viewController.coordinator = self
         viewController.asset = asset
+        viewController.completion = completion
         navigationController.pushViewController(viewController, animated: true)
     }
 }
