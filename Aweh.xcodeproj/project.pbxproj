@@ -154,7 +154,7 @@
 				7198AC7A24918A27002029CF /* PhotosGallery */,
 				716DA6C5248D7E91001B74E2 /* Shared */,
 				716DA6BE248D7E04001B74E2 /* PostStatus */,
-				718BE81E2486BA9600CA328B /* HomeScreen */,
+				718BE81E2486BA9600CA328B /* Feed */,
 			);
 			path = Feature;
 			sourceTree = "<group>";
@@ -347,13 +347,13 @@
 			path = Aweh;
 			sourceTree = "<group>";
 		};
-		718BE81E2486BA9600CA328B /* HomeScreen */ = {
+		718BE81E2486BA9600CA328B /* Feed */ = {
 			isa = PBXGroup;
 			children = (
 				7162C60924884B93002D8ED4 /* Presenter */,
 				71C78E5424886A0000E29082 /* View */,
 			);
-			path = HomeScreen;
+			path = Feed;
 			sourceTree = "<group>";
 		};
 		718BE81F2486BCE500CA328B /* Elements */ = {

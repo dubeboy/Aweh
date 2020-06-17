@@ -15,6 +15,8 @@ class PostStatusViewController: UIViewController {
     weak var coordinator: PhotosGalleryCoordinator?
     var numberOfCharactorsButton: UIBarButtonItem =
         UIBarButtonItem(title: "240", style: .plain, target: self, action: nil)
+    var postButton = UIBarButtonItem(title: "POST", style: .plain, target: self, action: #selector(post))
+    var assets: [String: PHAsset] = [:]
     
     @IBOutlet weak var assetsContainerView: UIView!
     @IBOutlet weak var statusTextBottomConstraint: NSLayoutConstraint!
@@ -38,14 +40,18 @@ class PostStatusViewController: UIViewController {
         statusTextView.inputAccessoryView = createToolBar()
         statusTextView.sizeToFit()
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "POST", style: .plain, target: self, action: #selector(post))
+        postButton.isEnabled = false
+        navigationItem.rightBarButtonItem = postButton
         numberOfCharactorsButton.isEnabled = false
         numberOfCharactorsButton.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.systemBlue], for: .disabled)
-//        numberOfCharactorsButton.tintColor = .systemBlue
     }
     
     @objc func post() {
-        print("post  it")
+        if statusTextView.textColor != UIColor.systemGray2 {
+            print("""
+                posting \(String(describing: statusTextView.text)) number of assets is \(assets.count)
+""")
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -80,7 +86,7 @@ class PostStatusViewController: UIViewController {
     
     
     // TODO: - move to the presenter
-    @objc func getImages() {
+    @objc func requestAuthorisation() {
         let status = PHPhotoLibrary.authorizationStatus()
         switch status {
             case .authorized:
@@ -107,7 +113,7 @@ class PostStatusViewController: UIViewController {
     }
     
     private func loadPhotos() {
-        // test this out for string reference cycles
+        // TODO: - test this out for string reference cycles
         coordinator?.startPhotosGalleryViewController { [weak self] assets in
             self?.didGetAssets(assets: assets) // tell presenter here!
         }
@@ -119,7 +125,7 @@ class PostStatusViewController: UIViewController {
         actionsToolBar.barStyle = .default
        
         actionsToolBar.items = [
-            UIBarButtonItem(title: "Add Images", style: .plain, target: self, action: #selector(getImages)),
+            UIBarButtonItem(title: "Add Images", style: .plain, target: self, action: #selector(requestAuthorisation)),
             UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
             // should be a custom UI progress UI
             numberOfCharactorsButton]
@@ -127,6 +133,7 @@ class PostStatusViewController: UIViewController {
     }
     
     private func didGetAssets(assets: [String: PHAsset]) {
+        self.assets = assets
        let assetsView = AssetsHorizontalListView(assets: assets)
        let ass = assetsContainerView.subviews.last
        ass?.removeFromSuperview() // TODO: - the view should auto update instead of removing from superview
@@ -145,8 +152,8 @@ extension PostStatusViewController: UITextViewDelegate {
         return true
     }
     
-    // TODO: - 1 fix the fact that the text is highlightable
-
+    // TODO: - 1 fix the fact that the text is highlightable replace with a UIlabel
+    // listen to end editing to get the final text and send to presenter
     // https://grokswift.com/uitextview-placeholder/
     // https://tij.me/blog/adding-placeholders-to-uitextviews-in-swift/
     func textView(_ textView: UITextView,
@@ -158,18 +165,22 @@ extension PostStatusViewController: UITextViewDelegate {
                 return false
             } else if textView.text == placeHolderText {
                 if text.utf16.count == 0 {
+                    postButton.isEnabled = false
                     return false
                 }
                 applyNonPlaceholderStyle(textView)
                 textView.text = ""
             }
+            postButton.isEnabled = true
             updateCharactorCount(length: newLength)
         } else {
             applyPlaceholderStyle(textView, placeholderText: placeHolderText)
             moveCursorToFront(textView)
+            postButton.isEnabled = false
             return false
         }
         
+        postButton.isEnabled = true
         return true
     }
     
