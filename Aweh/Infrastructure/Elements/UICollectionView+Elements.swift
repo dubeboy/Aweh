@@ -17,6 +17,10 @@ extension UICollectionView {
         dequeueReusableCell(withReuseIdentifier: String(describing: `class`), for: indexPath) as! T
     }
     
+    func dequeHeader<T: UICollectionViewCell>(_ `class`: T.Type, at indexPath: IndexPath) -> T {
+        dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: T.reuseIdentifier, for: indexPath) as! T
+    }
+    
     func register<T: UICollectionViewCell>(_ fromNib: T.Type) {
         register(
             UINib(nibName: T.reuseIdentifier, bundle: Bundle.main),
@@ -31,6 +35,8 @@ extension UICollectionView {
             withReuseIdentifier: T.reuseIdentifier
         )
     }
+    
+    
 }
 
 extension UICollectionViewCell {

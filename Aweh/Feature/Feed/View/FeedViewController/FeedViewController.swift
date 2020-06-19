@@ -12,7 +12,7 @@ class FeedViewController: UIViewController {
     
     let presenter: FeedPresenter = FeedPresenterImplemantation()
     var layout: UICollectionViewFlowLayout!
-    weak var coordinator: PostStatusCoordinator!
+    weak var coordinator: (PostStatusCoordinator & FeedDetailCoordinator)!
     
     let reuseIdentifier = FeedCollectionViewCell.reuseIdentifier
 
@@ -21,13 +21,6 @@ class FeedViewController: UIViewController {
             postButton.layer.cornerRadius = postButton.frame.height / 2
             postButton.clipsToBounds = true
             postButton.backgroundColor = .systemRed
-            
-            // use this to add a shadow !!!
-//            postButton.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
-//            postButton.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
-//            postButton.layer.shadowOpacity = 1.0
-//            postButton.layer.shadowRadius = 0.0
-//            postButton.layer.masksToBounds = false
         }
     }
     
@@ -42,6 +35,7 @@ class FeedViewController: UIViewController {
             )
                         
             collectionView.dataSource = self
+            collectionView.delegate = self
         }
     }
     
@@ -51,30 +45,29 @@ class FeedViewController: UIViewController {
         collectionView.reloadData() // initiate the load data
     }
     
-    func createToolbarItems() -> [UIBarButtonItem] {
-        return [
-            UIBarButtonItem(title: "Feed", style: .plain, target: self, action: #selector(goToFeed)),
-            UIBarButtonItem(title: "Notifications", style: .plain, target: self, action: #selector(goNotifications)),
-            UIBarButtonItem(title: "Settings", style: .plain, target: self, action: #selector(goProfile))
-        ]
-    }
-    
-    @IBAction func postButtonAction(_ sender: Any) {
-        coordinator.startPostStatusViewController()
-    }
-    
-    @objc func goToFeed() {
-        
-    }
-    
-    @objc func goProfile() {
-        
-    }
-    
-    @objc func goNotifications() {
-        
-    }
-    
+//    func createToolbarItems() -> [UIBarButtonItem] {
+//        return [
+//            UIBarButtonItem(title: "Feed", style: .plain, target: self, action: #selector(goToFeed)),
+//            UIBarButtonItem(title: "Notifications", style: .plain, target: self, action: #selector(goNotifications)),
+//            UIBarButtonItem(title: "Settings", style: .plain, target: self, action: #selector(goProfile))
+//        ]
+//    }
+//
+//    @IBAction func postButtonAction(_ sender: Any) {
+//        coordinator.startPostStatusViewController()
+//    }
+//
+//    @objc func goToFeed() {
+//
+//    }
+//
+//    @objc func goProfile() {
+//
+//    }
+//
+//    @objc func goNotifications() {
+//
+//    }
 }
 
 extension FeedViewController: UICollectionViewDataSource {
@@ -85,7 +78,16 @@ extension FeedViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let status = presenter.getStatus(at: indexPath)
         let cell = collectionView.deque(FeedCollectionViewCell.self, at: indexPath)
+        // TODO: - move to the presenter
         presenter.feedCellPresenter.configure(with: cell, forDisplaying: status)
         return cell
+    }
+    
+}
+
+extension FeedViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        // this should be started from the presenter
+        coordinator.startFeedDetailViewController(feedViewModel: presenter.getStatus(at: indexPath))
     }
 }

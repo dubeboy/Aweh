@@ -9,7 +9,7 @@
 import Foundation
 
 protocol FeedDetailPresenter {
-    func configure(_ cell: FeedDetailCollectionViewCell, with viewModel: FeedDetailViewModel)
+    func configure(_ cell: FeedDetailCollectionViewCell)
     func configure(_ cell: CommentCollectionViewCell, for indexPath: IndexPath)
 }
 
@@ -23,7 +23,7 @@ class FeedDetailPresenterImplemantation: FeedDetailPresenter {
         self.viewModel = statusViewModel
     }
     
-    func configure(_ cell: FeedDetailCollectionViewCell, with viewModel: FeedDetailViewModel) {
+    func configure(_ cell: FeedDetailCollectionViewCell) {
         feedDetailCellPresenter.configure(with: cell, forDisplaying: viewModel)
     }
     

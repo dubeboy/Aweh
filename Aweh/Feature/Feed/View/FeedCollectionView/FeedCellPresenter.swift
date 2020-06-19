@@ -20,4 +20,8 @@ class FeedCellPresenter {
             cell.statusImage.image = model.statusImage
         }
     }
+    
+    func didSelectItem(viewModel: StatusViewModel) {
+        // TODO: - some logic when the cell is selected
+    }
 }
