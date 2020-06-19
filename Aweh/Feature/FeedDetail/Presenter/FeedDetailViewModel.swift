@@ -9,12 +9,18 @@
 import Foundation
 
 struct FeedDetailViewModel {
-    let comments: [DetailCommentViewModel]
-    
+    var comments: [DetailCommentViewModel]?
+    let feed: StatusViewModel
 }
 
 struct DetailCommentViewModel {
     let userName: String
     let timeStamp: String
     let comment: String 
+}
+
+extension FeedDetailViewModel {
+    static func tranform(feed: StatusViewModel) -> FeedDetailViewModel {
+        FeedDetailViewModel(comments: nil, feed: feed)
+    }
 }

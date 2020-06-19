@@ -18,8 +18,18 @@ extension UICollectionView {
     }
     
     func register<T: UICollectionViewCell>(_ fromNib: T.Type) {
-        register(UINib(nibName: T.reuseIdentifier,bundle: Bundle.main),
-                 forCellWithReuseIdentifier: T.reuseIdentifier)
+        register(
+            UINib(nibName: T.reuseIdentifier, bundle: Bundle.main),
+            forCellWithReuseIdentifier: T.reuseIdentifier
+        )
+    }
+    
+    func registerHeader<T: UICollectionViewCell>(_ fromNib: T.Type) {
+        register(
+            UINib(nibName: T.reuseIdentifier, bundle: Bundle.main),
+            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+            withReuseIdentifier: T.reuseIdentifier
+        )
     }
 }
 

@@ -10,7 +10,7 @@ import UIKit
 
 class FeedViewController: UIViewController {
     
-    let presenter: StatusPresenter = HomeScreenPresenter()
+    let presenter: FeedPresenter = FeedPresenterImplemantation()
     var layout: UICollectionViewFlowLayout!
     weak var coordinator: PostStatusCoordinator!
     
@@ -85,7 +85,7 @@ extension FeedViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let status = presenter.getStatus(at: indexPath)
         let cell = collectionView.deque(FeedCollectionViewCell.self, at: indexPath)
-        presenter.statusCellPresenter.configure(with: cell, forDisplaying: status)
+        presenter.feedCellPresenter.configure(with: cell, forDisplaying: status)
         return cell
     }
 }

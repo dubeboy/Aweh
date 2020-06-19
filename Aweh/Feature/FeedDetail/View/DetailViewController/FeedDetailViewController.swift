@@ -9,16 +9,23 @@
 import UIKit
 
 class FeedDetailViewController: UICollectionViewController {
+    
+    var presenter: FeedDetailPresenter!
+    weak var coordinator: Coordinator!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        collectionView.register(FeedDetailCollectionViewCell.self)
+        collectionView.registerHeader(FeedDetailCollectionViewCell.self)
+        collectionView.register(CommentCollectionViewCell.self)
     }
     
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.deque(FeedDetailCollectionViewCell.self, at: indexPath)
+        
+        
+        return cell
         
     }
 }

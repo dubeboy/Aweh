@@ -9,16 +9,28 @@
 import Foundation
 
 protocol FeedDetailPresenter {
-    var commentsPresenter: CommentCellPresenter { get }
-    var feedDetailCellPresenter: FeedDetailCellPresenter { get }
+    func configure(_ cell: FeedDetailCollectionViewCell, with viewModel: FeedDetailViewModel)
+    func configure(_ cell: CommentCollectionViewCell, for indexPath: IndexPath)
 }
 
 class FeedDetailPresenterImplemantation: FeedDetailPresenter {
-    var commentsPresenter: CommentCellPresenter
-    var feedDetailPresenter: CommentCellPresenter
+    let feedDetailCellPresenter: FeedDetailCellPresenter = FeedDetailCellPresenter()
+    let commentsPresenter: CommentCellPresenter = CommentCellPresenter()
     
-    init(viewModel: FeedDetailViewModel) {
-        
+    let viewModel: FeedDetailViewModel
+    
+    init(statusViewModel: FeedDetailViewModel) {
+        self.viewModel = statusViewModel
+    }
+    
+    func configure(_ cell: FeedDetailCollectionViewCell, with viewModel: FeedDetailViewModel) {
+        feedDetailCellPresenter.configure(with: cell, forDisplaying: viewModel)
+    }
+    
+    func configure(_ cell: CommentCollectionViewCell, for indexPath: IndexPath) {
+        let commentViewModel = viewModel.comments?[indexPath.item]
+        guard let viewModel = commentViewModel else { return }
+        commentsPresenter.configure(with: cell, forDisplaying: viewModel)
     }
     
 }

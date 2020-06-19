@@ -9,7 +9,7 @@
 import Foundation
 
 class FeedDetailCellPresenter {
-    func configure() {
+    func configure(with cell: FeedDetailCollectionViewCell, forDisplaying model: FeedDetailViewModel){
         
     }
 }

@@ -9,7 +9,7 @@
 import Foundation
 
 class CommentCellPresenter {
-    func configure() {
+    func configure(with cell: CommentCollectionViewCell, forDisplaying viewModel: DetailCommentViewModel) {
         
     }
 }
