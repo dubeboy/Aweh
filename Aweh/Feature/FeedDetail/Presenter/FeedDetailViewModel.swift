@@ -9,5 +9,12 @@
 import Foundation
 
 struct FeedDetailViewModel {
+    let comments: [DetailCommentViewModel]
     
+}
+
+struct DetailCommentViewModel {
+    let userName: String
+    let timeStamp: String
+    let comment: String 
 }

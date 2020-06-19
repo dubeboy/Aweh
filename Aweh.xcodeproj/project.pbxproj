@@ -44,6 +44,8 @@
 		7198AC8324918C1A002029CF /* PhotosCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7198AC8224918C1A002029CF /* PhotosCollectionViewModel.swift */; };
 		71A77FCF249C33F800F8D442 /* FeedDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A77FCE249C33F800F8D442 /* FeedDetailCoordinator.swift */; };
 		71A77FD1249C345E00F8D442 /* FeedDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A77FD0249C345E00F8D442 /* FeedDetailViewModel.swift */; };
+		71A77FD3249C373D00F8D442 /* CommentCellPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A77FD2249C373D00F8D442 /* CommentCellPresenter.swift */; };
+		71A77FD5249C378100F8D442 /* FeedDetailCellPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A77FD4249C378100F8D442 /* FeedDetailCellPresenter.swift */; };
 		71CCF0CB249AB1450054C210 /* FeedDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CCF0C9249AB1450054C210 /* FeedDetailViewController.swift */; };
 		71CCF0CE249AB1590054C210 /* FeedDetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CCF0CD249AB1590054C210 /* FeedDetailPresenter.swift */; };
 		71CCF0D0249AB1E00054C210 /* FeedDetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71CCF0CF249AB1E00054C210 /* FeedDetailViewController.storyboard */; };
@@ -103,6 +105,8 @@
 		7198AC8224918C1A002029CF /* PhotosCollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCollectionViewModel.swift; sourceTree = "<group>"; };
 		71A77FCE249C33F800F8D442 /* FeedDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedDetailCoordinator.swift; sourceTree = "<group>"; };
 		71A77FD0249C345E00F8D442 /* FeedDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedDetailViewModel.swift; sourceTree = "<group>"; };
+		71A77FD2249C373D00F8D442 /* CommentCellPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCellPresenter.swift; sourceTree = "<group>"; };
+		71A77FD4249C378100F8D442 /* FeedDetailCellPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedDetailCellPresenter.swift; sourceTree = "<group>"; };
 		71CCF0C9249AB1450054C210 /* FeedDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedDetailViewController.swift; sourceTree = "<group>"; };
 		71CCF0CD249AB1590054C210 /* FeedDetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedDetailPresenter.swift; sourceTree = "<group>"; };
 		71CCF0CF249AB1E00054C210 /* FeedDetailViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FeedDetailViewController.storyboard; sourceTree = "<group>"; };
@@ -500,6 +504,7 @@
 			children = (
 				71CCF0D3249AB2B30054C210 /* FeedDetailCollectionViewCell.swift */,
 				71CCF0D4249AB2B30054C210 /* FeedDetailCollectionViewCell.xib */,
+				71A77FD4249C378100F8D442 /* FeedDetailCellPresenter.swift */,
 			);
 			path = DetailCollectionView;
 			sourceTree = "<group>";
@@ -509,6 +514,7 @@
 			children = (
 				71CCF0D8249C23B30054C210 /* CommentCollectionViewCell.swift */,
 				71CCF0D9249C23B30054C210 /* CommentCollectionViewCell.xib */,
+				71A77FD2249C373D00F8D442 /* CommentCellPresenter.swift */,
 			);
 			path = CommentCollectionView;
 			sourceTree = "<group>";
@@ -726,6 +732,7 @@
 				716DA6C4248D7E69001B74E2 /* PostStatusPresenter.swift in Sources */,
 				7198AC7F24918B36002029CF /* PhotosCollectionViewPresenter.swift in Sources */,
 				7167C5C324959A9200B49096 /* ToastAlert.swift in Sources */,
+				71A77FD3249C373D00F8D442 /* CommentCellPresenter.swift in Sources */,
 				71A77FCF249C33F800F8D442 /* FeedDetailCoordinator.swift in Sources */,
 				7198AC8124918BBD002029CF /* PhotosCollectionViewController.swift in Sources */,
 				71D6BAE12495737100F4B5D8 /* AssetsHorizontalListView.swift in Sources */,
@@ -739,6 +746,7 @@
 				71ECFDFB2487187000943917 /* FeedCollectionViewCell.swift in Sources */,
 				71F46CEE24995610002B8EFC /* LivePhotoView.swift in Sources */,
 				71A77FD1249C345E00F8D442 /* FeedDetailViewModel.swift in Sources */,
+				71A77FD5249C378100F8D442 /* FeedDetailCellPresenter.swift in Sources */,
 				7157C2322488761900F0A7F0 /* SimpleDependencyInjector.swift in Sources */,
 				7172D613248F0CC90083B7F6 /* PostStatusCoordinator.swift in Sources */,
 				71ECFDF82487066B00943917 /* FeedCollectionViewFlowLayout.swift in Sources */,

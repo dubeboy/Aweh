@@ -8,14 +8,17 @@
 
 import UIKit
 
-class FeedDetailViewController: UIViewController {
+class FeedDetailViewController: UICollectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-      
+        collectionView.register(FeedDetailCollectionViewCell.self)
     }
-
-
-
+    
+    
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.deque(FeedDetailCollectionViewCell.self, at: indexPath)
+        
+    }
 }

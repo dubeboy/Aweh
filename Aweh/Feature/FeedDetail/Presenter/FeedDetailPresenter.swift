@@ -9,9 +9,16 @@
 import Foundation
 
 protocol FeedDetailPresenter {
-    
+    var commentsPresenter: CommentCellPresenter { get }
+    var feedDetailCellPresenter: FeedDetailCellPresenter { get }
 }
 
 class FeedDetailPresenterImplemantation: FeedDetailPresenter {
+    var commentsPresenter: CommentCellPresenter
+    var feedDetailPresenter: CommentCellPresenter
+    
+    init(viewModel: FeedDetailViewModel) {
+        
+    }
     
 }

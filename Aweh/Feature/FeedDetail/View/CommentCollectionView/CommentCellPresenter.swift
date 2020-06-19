@@ -1,5 +1,5 @@
 //
-//  FeedDetailCoordinator.swift
+//  CommentCellPresenter.swift
 //  Aweh
 //
 //  Created by Divine.Dube on 2020/06/19.
@@ -8,10 +8,8 @@
 
 import Foundation
 
-protocol FeedDetailCoordinator: Coordinator {
-    
-}
-
-extension MainCoordinator: FeedDetailCoordinator {
-    
+class CommentCellPresenter {
+    func configure() {
+        
+    }
 }
