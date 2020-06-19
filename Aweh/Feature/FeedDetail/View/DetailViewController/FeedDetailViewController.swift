@@ -23,6 +23,9 @@ class FeedDetailViewController: UICollectionViewController {
 
     }
     
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        presenter.commentsCount
+    }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.deque(CommentCollectionViewCell.self, at: indexPath)

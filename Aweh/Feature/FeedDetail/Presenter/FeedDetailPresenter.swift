@@ -9,6 +9,7 @@
 import Foundation
 
 protocol FeedDetailPresenter {
+    var commentsCount: Int { get }
     func configure(_ cell: FeedDetailCollectionViewCell)
     func configure(_ cell: CommentCollectionViewCell, for indexPath: IndexPath)
 }
@@ -16,8 +17,11 @@ protocol FeedDetailPresenter {
 class FeedDetailPresenterImplemantation: FeedDetailPresenter {
     let feedDetailCellPresenter: FeedDetailCellPresenter = FeedDetailCellPresenter()
     let commentsPresenter: CommentCellPresenter = CommentCellPresenter()
-    
     let viewModel: FeedDetailViewModel
+    
+    var commentsCount: Int {
+        viewModel.comments?.count ?? 0
+    }
     
     init(statusViewModel: FeedDetailViewModel) {
         self.viewModel = statusViewModel

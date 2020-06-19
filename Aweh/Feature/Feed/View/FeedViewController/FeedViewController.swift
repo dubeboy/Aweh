@@ -18,24 +18,13 @@ class FeedViewController: UIViewController {
 
     @IBOutlet weak var postButton: UIButton! {
         didSet {
-            postButton.layer.cornerRadius = postButton.frame.height / 2
-            postButton.clipsToBounds = true
-            postButton.backgroundColor = .systemRed
+            configurePostButton()
         }
     }
     
     @IBOutlet weak var collectionView: UICollectionView! {
         didSet {
-            collectionView.backgroundColor = .systemGray5
-            collectionView.collectionViewLayout = FeedCollectionViewFlowLayout()
-            
-            collectionView.register(
-                UINib(nibName: reuseIdentifier, bundle: nil),
-                forCellWithReuseIdentifier: reuseIdentifier
-            )
-                        
-            collectionView.dataSource = self
-            collectionView.delegate = self
+           configureCollectionView()
         }
     }
     
@@ -43,6 +32,30 @@ class FeedViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.reloadData() // initiate the load data
+    }
+    
+    private func configureCollectionView() {
+        collectionView.backgroundColor = .systemGray5
+        collectionView.collectionViewLayout = FeedCollectionViewFlowLayout()
+        
+        collectionView.register(
+            UINib(nibName: reuseIdentifier, bundle: nil),
+            forCellWithReuseIdentifier: reuseIdentifier
+        )
+        let layout = collectionView.collectionViewLayout as! FeedCollectionViewFlowLayout
+        layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+        collectionView.dataSource = self
+        collectionView.delegate = self
+    }
+    
+    private func configurePostButton() {
+        postButton.layer.cornerRadius = postButton.frame.height / 2
+        postButton.clipsToBounds = true
+        postButton.backgroundColor = .systemRed
+    }
+    
+    @IBAction func postButtonAction(_ sender: Any) {
+        coordinator.startPostStatusViewController()
     }
     
 //    func createToolbarItems() -> [UIBarButtonItem] {
@@ -53,9 +66,7 @@ class FeedViewController: UIViewController {
 //        ]
 //    }
 //
-//    @IBAction func postButtonAction(_ sender: Any) {
-//        coordinator.startPostStatusViewController()
-//    }
+ 
 //
 //    @objc func goToFeed() {
 //
