@@ -17,12 +17,11 @@ class FeedDetailViewController: UICollectionViewController {
         super.viewDidLoad()
         collectionView.register(FeedDetailCollectionViewCell.self)
         collectionView.register(CommentCollectionViewCell.self)
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
+//        collectionView.translatesAutoresizingMaskIntoConstraints = false
         let layout = collectionViewLayout as! UICollectionViewFlowLayout
         layout.scrollDirection = .vertical
         let width = collectionView.bounds.width - (layout.sectionInset.left + layout.sectionInset.right)
         layout.estimatedItemSize = CGSize(width: width, height: 100)
-//        layout.sectionInset = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
     }
         
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -41,15 +40,4 @@ class FeedDetailViewController: UICollectionViewController {
             return cell
         }
     }
-}
-
-extension FeedDetailViewController: UICollectionViewDelegateFlowLayout {
-//    func collectionView(_ collectionView: UICollectionView,
-//                        layout collectionViewLayout: UICollectionViewLayout,
-//                        referenceSizeForHeaderInSection section: Int) -> CGSize {
-//        let size = cell.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
-//        print("item size: \(size)")
-//        
-//        return size
-//    }
 }

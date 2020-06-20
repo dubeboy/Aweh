@@ -19,6 +19,9 @@ class FeedCellPresenter {
         } else {
             cell.statusImage.image = model.statusImage
         }
+        
+        cell.setNeedsLayout()
+        cell.layoutIfNeeded()
     }
     
     func didSelectItem(viewModel: StatusViewModel) {

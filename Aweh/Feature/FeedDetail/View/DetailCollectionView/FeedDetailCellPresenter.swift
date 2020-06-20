@@ -12,7 +12,7 @@ class FeedDetailCellPresenter {
     func configure(with cell: FeedDetailCollectionViewCell, forDisplaying model: FeedDetailViewModel){
         let status = model.feed
         cell.userHandleLabel.isHidden = true
-        cell.mediaCollectionView.isHidden = false
+        cell.mediaCollectionView.isHidden = true
         cell.mediaCollectionView.backgroundColor = .systemBlue
         cell.userNameLabel.text = status.userName
         cell.userImage.image = status.userImage

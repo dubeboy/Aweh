@@ -9,10 +9,31 @@
 import UIKit
 
 class FeedDetailCollectionViewCell: UICollectionViewCell {
-    @IBOutlet weak var userNameLabel: UILabel!
-    @IBOutlet weak var userHandleLabel: UILabel!
-    @IBOutlet weak var userImage: UIImageView!
-    @IBOutlet weak var mediaCollectionView: UICollectionView!
+    @IBOutlet weak var userNameLabel: UILabel! {
+        didSet {
+            userNameLabel.translatesAutoresizingMaskIntoConstraints = false
+
+        }
+    }
+    @IBOutlet weak var userHandleLabel: UILabel! {
+        didSet {
+            userHandleLabel.translatesAutoresizingMaskIntoConstraints = false
+
+        }
+    }
+    @IBOutlet weak var userImage: UIImageView! {
+        didSet {
+            userImage.contentMode = .scaleAspectFill
+            userImage.makeImageRound()
+            userImage.translatesAutoresizingMaskIntoConstraints = false
+
+        }
+    }
+    @IBOutlet weak var mediaCollectionView: UICollectionView! {
+        didSet {
+            mediaCollectionView.translatesAutoresizingMaskIntoConstraints = false
+        }
+    }
     
     @IBOutlet weak var statusText: UILabel! {
         didSet {
@@ -33,17 +54,19 @@ class FeedDetailCollectionViewCell: UICollectionViewCell {
             contentView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
         // Initialization code
+
     }
-    
     override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
         setNeedsLayout()
         layoutIfNeeded()
+        let contentViewSize = contentView.bounds
         let size = contentView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
         let attr = super.preferredLayoutAttributesFitting(layoutAttributes)
-        
+        let newSize = CGSize(width: contentViewSize.width, height: size.height)
         var newFrame = attr.frame
 
-        newFrame.size = size
+        newFrame.size = newSize
+        attr.frame = newFrame
         return attr
     }
 
