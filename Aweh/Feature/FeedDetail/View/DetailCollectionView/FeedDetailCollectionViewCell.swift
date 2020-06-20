@@ -16,12 +16,15 @@ class FeedDetailCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var statusText: UILabel! {
         didSet {
+            statusText.numberOfLines = 0
             statusText.lineBreakMode = .byWordWrapping
         }
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.clipsToBounds = true
+        self.translatesAutoresizingMaskIntoConstraints = false
         contentView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             contentView.leftAnchor.constraint(equalTo: leftAnchor),

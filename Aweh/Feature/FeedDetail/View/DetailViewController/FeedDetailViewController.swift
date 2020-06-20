@@ -15,31 +15,32 @@ class FeedDetailViewController: UICollectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView.registerHeader(FeedDetailCollectionViewCell.self)
+        collectionView.register(FeedDetailCollectionViewCell.self)
         collectionView.register(CommentCollectionViewCell.self)
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
         let layout = collectionViewLayout as! UICollectionViewFlowLayout
         layout.scrollDirection = .vertical
-        layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+        let width = collectionView.bounds.width - (layout.sectionInset.left + layout.sectionInset.right)
+        layout.estimatedItemSize = CGSize(width: width, height: 100)
+//        layout.sectionInset = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
     }
         
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        presenter.commentsCount
+        presenter.commentsCount + 1
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.deque(CommentCollectionViewCell.self, at: indexPath)
-        presenter.configure(cell, for: indexPath)
-        return cell
-        
+        switch indexPath.item {
+            case 0:
+            let cell = collectionView.deque(FeedDetailCollectionViewCell.self, at: indexPath)
+            presenter.configure(cell)
+            return cell
+            default:
+            let cell = collectionView.deque(CommentCollectionViewCell.self, at: indexPath)
+            presenter.configure(cell, for: indexPath)
+            return cell
+        }
     }
-    
-    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let cell = collectionView.dequeHeader(FeedDetailCollectionViewCell.self, at: indexPath)
-        presenter.configure(cell)
-        return cell
-    }
-        
-   
 }
 
 extension FeedDetailViewController: UICollectionViewDelegateFlowLayout {
