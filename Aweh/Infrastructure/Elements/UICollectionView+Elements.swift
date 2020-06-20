@@ -11,10 +11,8 @@ import UIKit
 
 extension UICollectionView {
     // could also add some registration that uses properwrappers
-
-    
     func deque<T: UICollectionViewCell>(_ `class`: T.Type, at indexPath: IndexPath) -> T {
-        dequeueReusableCell(withReuseIdentifier: String(describing: `class`), for: indexPath) as! T
+        dequeueReusableCell(withReuseIdentifier: T.reuseIdentifier, for: indexPath) as! T
     }
     
     func dequeHeader<T: UICollectionViewCell>(_ `class`: T.Type, at indexPath: IndexPath) -> T {
@@ -42,6 +40,13 @@ extension UICollectionView {
 extension UICollectionViewCell {
     static var reuseIdentifier: String {
         return String(describing: self)
+    }
+}
+
+extension UICollectionViewCell {
+    func configureContentView() {
+        contentView.backgroundColor = .systemBackground
+        contentView.clipsToBounds = true
     }
 }
 

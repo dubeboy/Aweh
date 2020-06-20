@@ -15,13 +15,13 @@ class FeedDetailViewController: UICollectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView.register(FeedDetailCollectionViewCell.self)
-        collectionView.register(CommentCollectionViewCell.self)
-//        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        let layout = collectionViewLayout as! UICollectionViewFlowLayout
-        layout.scrollDirection = .vertical
-        let width = collectionView.bounds.width - (layout.sectionInset.left + layout.sectionInset.right)
-        layout.estimatedItemSize = CGSize(width: width, height: 100)
+        configureCollectionView()
+        
+        presenter.fetchComments(page: 0) { [weak self] commentsCount in
+            // TODO: - show the number of comments on the top view
+            // reload item 1 to n
+            self?.collectionView.reloadData()
+        }
     }
         
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -39,5 +39,16 @@ class FeedDetailViewController: UICollectionViewController {
             presenter.configure(cell, for: indexPath)
             return cell
         }
+    }
+    
+    private func configureCollectionView() {
+        collectionView.register(FeedDetailCollectionViewCell.self)
+        collectionView.register(CommentCollectionViewCell.self)
+        let layout = collectionViewLayout as! UICollectionViewFlowLayout
+        layout.scrollDirection = .vertical
+        let width = collectionView.bounds.width - (layout.sectionInset.left + layout.sectionInset.right)
+        layout.estimatedItemSize = CGSize(width: width, height: 100)
+        layout.minimumLineSpacing = 1
+        collectionView.backgroundColor = .systemGray5
     }
 }

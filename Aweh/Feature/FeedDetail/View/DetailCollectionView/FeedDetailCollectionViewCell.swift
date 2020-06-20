@@ -9,31 +9,15 @@
 import UIKit
 
 class FeedDetailCollectionViewCell: UICollectionViewCell {
-    @IBOutlet weak var userNameLabel: UILabel! {
-        didSet {
-            userNameLabel.translatesAutoresizingMaskIntoConstraints = false
-
-        }
-    }
-    @IBOutlet weak var userHandleLabel: UILabel! {
-        didSet {
-            userHandleLabel.translatesAutoresizingMaskIntoConstraints = false
-
-        }
-    }
+    @IBOutlet weak var userNameLabel: UILabel!
+    @IBOutlet weak var userHandleLabel: UILabel!
     @IBOutlet weak var userImage: UIImageView! {
         didSet {
             userImage.contentMode = .scaleAspectFill
             userImage.makeImageRound()
-            userImage.translatesAutoresizingMaskIntoConstraints = false
-
         }
     }
-    @IBOutlet weak var mediaCollectionView: UICollectionView! {
-        didSet {
-            mediaCollectionView.translatesAutoresizingMaskIntoConstraints = false
-        }
-    }
+    @IBOutlet weak var mediaCollectionView: UICollectionView!
     
     @IBOutlet weak var statusText: UILabel! {
         didSet {
@@ -45,16 +29,9 @@ class FeedDetailCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.clipsToBounds = true
-        self.translatesAutoresizingMaskIntoConstraints = false
-        contentView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            contentView.leftAnchor.constraint(equalTo: leftAnchor),
-            contentView.rightAnchor.constraint(equalTo: rightAnchor),
-            contentView.topAnchor.constraint(equalTo: topAnchor),
-            contentView.bottomAnchor.constraint(equalTo: bottomAnchor)
-        ])
-        // Initialization code
-
+        translatesAutoresizingMaskIntoConstraints = false
+        configureContentView()
+       
     }
     override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
         setNeedsLayout()

@@ -23,22 +23,25 @@
                             <constraint firstAttribute="width" constant="60" id="ql1-va-vha"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Peter Stewart" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Flw-he-su4">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Peter Stewart" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Flw-he-su4">
                         <rect key="frame" x="88" y="16" width="110" height="21"/>
                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2 KM Away ・1h" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sg7-ug-hBC">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="2 KM Away ・1h" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sg7-ug-hBC">
                         <rect key="frame" x="242" y="16" width="123" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="2" translatesAutoresizingMaskIntoConstraints="NO" id="c9u-ox-vGH">
-                        <rect key="frame" x="90" y="84.5" width="275" height="143.5"/>
+                        <rect key="frame" x="88" y="88" width="277" height="140"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="140" id="nPK-aj-rWu"/>
+                        </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Posted 1 minute ago" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VAD-g5-i5i">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Posted 1 minute ago" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VAD-g5-i5i">
                         <rect key="frame" x="88" y="41" width="277" height="20.5"/>
                         <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                         <nil key="highlightedColor"/>
@@ -47,9 +50,9 @@
             </view>
             <constraints>
                 <constraint firstItem="Sg7-ug-hBC" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Flw-he-su4" secondAttribute="trailing" constant="8" id="95X-2A-0vR"/>
-                <constraint firstItem="c9u-ox-vGH" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="90" id="HUp-Cd-WIW"/>
                 <constraint firstAttribute="bottom" secondItem="c9u-ox-vGH" secondAttribute="bottom" constant="8" id="Hy1-gO-vtK"/>
                 <constraint firstAttribute="trailing" secondItem="Sg7-ug-hBC" secondAttribute="trailing" constant="16" id="ILD-aJ-5wB"/>
+                <constraint firstItem="c9u-ox-vGH" firstAttribute="width" secondItem="VAD-g5-i5i" secondAttribute="width" id="KgE-9b-RaS"/>
                 <constraint firstAttribute="trailing" secondItem="VAD-g5-i5i" secondAttribute="trailing" constant="16" id="Rf0-SX-yCJ"/>
                 <constraint firstItem="Flw-he-su4" firstAttribute="leading" secondItem="buT-Bd-nJ7" secondAttribute="trailing" constant="12" id="dqI-of-kO8"/>
                 <constraint firstItem="buT-Bd-nJ7" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="16" id="hgw-fO-WcK"/>

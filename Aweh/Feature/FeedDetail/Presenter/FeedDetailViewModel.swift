@@ -18,7 +18,16 @@ struct DetailCommentViewModel {
     let userName: String
     let timestamp: String
     let comment: String
-    let userImage: UIImage
+    let userImage: UIImage?
+}
+
+extension DetailCommentViewModel {
+    static func tranform(comment: Comment) -> DetailCommentViewModel {
+        DetailCommentViewModel(userName: comment.name,
+                               timestamp: comment.timestamp.relativeDate(),
+                               comment: comment.comment,
+                               userImage: UIImage(named: comment.userImageURL))
+    }
 }
 
 extension FeedDetailViewModel {

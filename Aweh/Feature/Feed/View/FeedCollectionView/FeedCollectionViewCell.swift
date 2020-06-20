@@ -46,11 +46,6 @@ class FeedCollectionViewCell: UICollectionViewCell {
 //       return size
 //    }
     
-    private func configureContentView() {
-        contentView.backgroundColor = .systemBackground
-        contentView.clipsToBounds = true
-    }
-    
     private func configureCell() {
         configureContentView()
         configureProfileImage()
