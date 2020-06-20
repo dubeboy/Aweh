@@ -16,7 +16,7 @@ class FeedDetailViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCollectionView()
-        
+        title = presenter.title
         presenter.fetchComments(page: 0) { [weak self] commentsCount in
             // TODO: - show the number of comments on the top view
             // reload item 1 to n
@@ -50,5 +50,7 @@ class FeedDetailViewController: UICollectionViewController {
         layout.estimatedItemSize = CGSize(width: width, height: 100)
         layout.minimumLineSpacing = 1
         collectionView.backgroundColor = .systemGray5
+        collectionView.showsVerticalScrollIndicator = false
+        collectionView.showsHorizontalScrollIndicator = false
     }
 }

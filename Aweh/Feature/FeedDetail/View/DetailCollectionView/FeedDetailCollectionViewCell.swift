@@ -33,6 +33,7 @@ class FeedDetailCollectionViewCell: UICollectionViewCell {
         configureContentView()
        
     }
+    
     override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
         setNeedsLayout()
         layoutIfNeeded()
