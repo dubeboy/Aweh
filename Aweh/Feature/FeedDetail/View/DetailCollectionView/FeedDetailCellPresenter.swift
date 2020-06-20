@@ -10,6 +10,10 @@ import Foundation
 
 class FeedDetailCellPresenter {
     func configure(with cell: FeedDetailCollectionViewCell, forDisplaying model: FeedDetailViewModel){
-        
+        let status = model.feed
+        cell.userHandleLabel.isHidden = true
+        cell.userNameLabel.text = status.userName
+        cell.userImage.image = status.userImage
+        cell.statusText.text = status.status.string
     }
 }

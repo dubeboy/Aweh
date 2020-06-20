@@ -18,11 +18,10 @@ class FeedDetailViewController: UICollectionViewController {
         collectionView.registerHeader(FeedDetailCollectionViewCell.self)
         collectionView.register(CommentCollectionViewCell.self)
         let layout = collectionViewLayout as! UICollectionViewFlowLayout
+        layout.scrollDirection = .vertical
         layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
-//        layout.headerReferenceSize = CGSize(width: view.frame.size.width, height: 80)
-
     }
-    
+        
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         presenter.commentsCount
     }
@@ -39,10 +38,17 @@ class FeedDetailViewController: UICollectionViewController {
         presenter.configure(cell)
         return cell
     }
-    
-//   override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-//
-//        return CGSize(width: collectionView.frame.width, height: 40)
+        
+   
+}
+
+extension FeedDetailViewController: UICollectionViewDelegateFlowLayout {
+//    func collectionView(_ collectionView: UICollectionView,
+//                        layout collectionViewLayout: UICollectionViewLayout,
+//                        referenceSizeForHeaderInSection section: Int) -> CGSize {
+//        let size = cell.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
+//        print("item size: \(size)")
+//        
+//        return size
 //    }
-    
 }

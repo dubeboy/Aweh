@@ -18,6 +18,8 @@ class FeedCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        contentView.translatesAutoresizingMaskIntoConstraints = false
+        contentView --> self
         statusImage.contentMode = .scaleAspectFill
         configureCell()
     }

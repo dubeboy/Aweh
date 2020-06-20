@@ -9,6 +9,7 @@
 import UIKit
 
 class CommentCollectionViewCell: UICollectionViewCell {
+    @IBOutlet weak var timestamp: UILabel!
     @IBOutlet weak var userProfileImage: UIImageView!
     @IBOutlet weak var commentText: UILabel!
     @IBOutlet weak var userName: UILabel!

@@ -12,7 +12,7 @@ class FeedCellPresenter {
     func configure(with cell: FeedCollectionViewCell, forDisplaying model: StatusViewModel) {
         cell.userName.text = model.userName // change this to attributed string
         cell.statusText.attributedText = model.status
-        cell.distanceAndTime.text = model.distanceFromYou + "KM ・ \(model.timeSincePosted)" // change this to attributed string
+        cell.distanceAndTime.text = model.distanceFromYou + "KM・\(model.timeSincePosted)" // change this to attributed string
         
         if model.statusImage == nil {
             cell.statusImage.isHidden = true

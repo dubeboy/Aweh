@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct FeedDetailViewModel {
     var comments: [DetailCommentViewModel]?
@@ -15,8 +16,9 @@ struct FeedDetailViewModel {
 
 struct DetailCommentViewModel {
     let userName: String
-    let timeStamp: String
-    let comment: String 
+    let timestamp: String
+    let comment: String
+    let userImage: UIImage
 }
 
 extension FeedDetailViewModel {

@@ -75,7 +75,9 @@
             <size key="customSize" width="378" height="214"/>
             <connections>
                 <outlet property="mediaCollectionView" destination="JgJ-ae-0fa" id="cxC-Lp-6GE"/>
+                <outlet property="statusText" destination="47W-5e-88k" id="zlV-rw-SN6"/>
                 <outlet property="userHandleLabel" destination="bI3-35-mzk" id="URj-IT-G1A"/>
+                <outlet property="userImage" destination="yzV-IK-t45" id="9aE-cj-woq"/>
                 <outlet property="userNameLabel" destination="GbH-EU-7fL" id="n5c-10-pGd"/>
             </connections>
             <point key="canvasLocation" x="111.59420289855073" y="126.5625"/>
