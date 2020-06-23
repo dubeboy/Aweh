@@ -9,7 +9,7 @@
 import UIKit
 
 class FeedViewController: UIViewController {
-    
+  
     let presenter: FeedPresenter = FeedPresenterImplemantation()
     var layout: UICollectionViewFlowLayout!
     weak var coordinator: (PostStatusCoordinator & FeedDetailCoordinator)!

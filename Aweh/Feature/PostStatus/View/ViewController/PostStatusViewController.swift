@@ -15,7 +15,8 @@ class PostStatusViewController: UIViewController {
     weak var coordinator: PhotosGalleryCoordinator?
     var numberOfCharactorsButton: UIBarButtonItem =
         UIBarButtonItem(title: "240", style: .plain, target: self, action: nil)
-    var postButton = UIBarButtonItem(title: "POST", style: .plain, target: self, action: #selector(post))
+    var postButton =
+        UIBarButtonItem(title: "POST", style: .plain, target: self, action: #selector(post))
     var assets: [String: PHAsset] = [:]
     
     @IBOutlet weak var assetsContainerView: UIView!
@@ -43,7 +44,10 @@ class PostStatusViewController: UIViewController {
         postButton.isEnabled = false
         navigationItem.rightBarButtonItem = postButton
         numberOfCharactorsButton.isEnabled = false
-        numberOfCharactorsButton.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.systemBlue], for: .disabled)
+        numberOfCharactorsButton.setTitleTextAttributes(
+                [NSAttributedString.Key.foregroundColor: UIColor.systemBlue],
+                for: .disabled
+        )
     }
     
     @objc func post() {
@@ -190,7 +194,7 @@ extension PostStatusViewController: UITextViewDelegate {
     }
     
     private func applyNonPlaceholderStyle(_ textView: UITextView) {
-        textView.textColor = .black
+        textView.textColor = UIColor(named: "textViewInputTextColor")
     }
     
     
