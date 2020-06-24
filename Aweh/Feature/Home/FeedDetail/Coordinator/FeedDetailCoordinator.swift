@@ -12,7 +12,7 @@ protocol FeedDetailCoordinator: Coordinator {
     func startFeedDetailViewController(feedViewModel: StatusViewModel)
 }
 
-extension MainCoordinator: FeedDetailCoordinator {
+extension HomeCoordinator: FeedDetailCoordinator {
     func startFeedDetailViewController(feedViewModel: StatusViewModel) {
         let viewController = FeedDetailViewController.instantiate()
         viewController.coordinator = self

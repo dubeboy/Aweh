@@ -12,7 +12,7 @@ protocol PostStatusCoordinator: Coordinator {
     func startPostStatusViewController()
 }
 
-extension MainCoordinator: PostStatusCoordinator  {
+extension HomeCoordinator: PostStatusCoordinator  {
     func startPostStatusViewController() {
         let viewController = PostStatusViewController.instantiate()
         viewController.coordinator = self

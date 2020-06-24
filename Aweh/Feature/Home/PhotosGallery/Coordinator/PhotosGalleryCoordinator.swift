@@ -13,7 +13,7 @@ protocol PhotosGalleryCoordinator: Coordinator {
     func startPhotosGalleryViewController(completion: @escaping (([String: PHAsset]) -> Void))
 }
 
-extension MainCoordinator: PhotosGalleryCoordinator {
+extension HomeCoordinator: PhotosGalleryCoordinator {
     func startPhotosGalleryViewController(completion: @escaping (([String: PHAsset]) -> Void)) {
         let viewController = PhotosCollectionViewController.instantiate()
         viewController.coordinator = self

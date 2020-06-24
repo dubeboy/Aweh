@@ -19,9 +19,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let tabBarController = UITabBarController()
         
         coordinators = [
-            HomeCoordinator(), // pass in the tab bar controller
-            StatusesCoordinator(),
-            ProfileCoordinator()
+            HomeCoordinator(tabBarController), // pass in the tab bar controller
+            StatusCoordinator(tabBarController),
+            ProfileCoordinator(tabBarController)
         ].map { $0.start() }
         
         tabBarController.viewControllers = coordinators?.map { $0.navigationController }

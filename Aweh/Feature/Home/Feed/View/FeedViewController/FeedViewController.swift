@@ -31,6 +31,7 @@ class FeedViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Feed"
         collectionView.reloadData() // initiate the load data
     }
     

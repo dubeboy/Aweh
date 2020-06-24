@@ -23,10 +23,11 @@ open class MainCoordinator: NSObject, Coordinator, UINavigationControllerDelegat
   
     var childCoordinators = [Coordinator]()
     var navigationController: UINavigationController
+    let tabBarController: UITabBarController
     
-    override init() {
-        self.navigationController = UINavigationController()
-        super.init()
+    init(_ tabBarController: UITabBarController) {
+        navigationController = UINavigationController()
+        self.tabBarController = tabBarController
     }
     
     /// Default Implementation does nothing
@@ -73,16 +74,18 @@ class HomeCoordinator: MainCoordinator {
         navigationController.delegate = self
         let mainViewController = FeedViewController.instantiate()
         mainViewController.coordinator = self
+        navigationController.tabBarItem = UITabBarItem(title: "Feed", image: nil, selectedImage: nil)
         navigationController.pushViewController(mainViewController, animated: true)
         return self
     }
 }
 
-class StatusesCoordinator: MainCoordinator {
+class StatusCoordinator: MainCoordinator {
     override func start() -> Self {
         navigationController.delegate = self
-        let mainViewController = FeedViewController.instantiate()
+        let mainViewController = StatusPageViewController.instantiate()
         mainViewController.coordinator = self
+        navigationController.tabBarItem = UITabBarItem(title: "Status", image: nil, selectedImage: nil)
         navigationController.pushViewController(mainViewController, animated: true)
         return self
     }
@@ -92,7 +95,7 @@ class ProfileCoordinator: MainCoordinator {
     override func start() -> Self {
         navigationController.delegate = self
         let mainViewController = FeedViewController.instantiate()
-        mainViewController.coordinator = self
+        navigationController.tabBarItem = UITabBarItem(title: "Profile", image: nil, selectedImage: nil)
         navigationController.pushViewController(mainViewController, animated: true)
         return self
     }
