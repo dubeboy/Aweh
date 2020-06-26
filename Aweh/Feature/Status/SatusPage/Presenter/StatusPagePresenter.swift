@@ -8,6 +8,15 @@
 
 import Foundation
 
-class StatusesPresenter {
+protocol StatusPresenter {
+    var title: String { get }
+}
+
+class StatusPresenterImplemantation: StatusPresenter {
+    var title: String { viewModel.interestName }
+    let viewModel: InterestViewModel
     
+    init(with viewModel: InterestViewModel) {
+        self.viewModel = viewModel
+    }
 }

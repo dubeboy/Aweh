@@ -46,19 +46,13 @@ class PhotosCollectionViewController: UICollectionViewController {
     private func setUpCollectionView() {
         collectionView.register(PhotosCollectionViewCell.self)
         
-        
         let flowLayout = collectionViewLayout as! UICollectionViewFlowLayout
         flowLayout.minimumInteritemSpacing = 1 // Todo: - should be in theme
         flowLayout.minimumLineSpacing = 1
         flowLayout.sectionInset = UIEdgeInsets(top: 1, left: 1, bottom: 1, right: 1)
         
-        let size = collectionView.bounds.size
-        let leftRightInset = flowLayout.sectionInset.right + flowLayout.sectionInset.right
-        let interItemSpacing = flowLayout.minimumInteritemSpacing
-        
-        let cellSize = (size.width - leftRightInset - (interItemSpacing * 2)) / 3
-        let itemSize = CGSize(width: cellSize, height: cellSize)
-        flowLayout.itemSize = itemSize
+        let size = collectionView.calculateItemSize(numberOfColumns: 3)
+        flowLayout.itemSize = size
         
         presenter.loadImages(for: size) { count in
             collectionView.reloadData()

@@ -6,10 +6,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Intrests View Controller-->
+        <!--Interests View Controller-->
         <scene sceneID="u1X-Pg-DEn">
             <objects>
-                <collectionViewController storyboardIdentifier="IntrestsViewController" id="VO2-uc-MMf" customClass="IntrestsViewController" customModule="Aweh" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController storyboardIdentifier="InterestsViewController" id="VO2-uc-MMf" customClass="InterestsViewController" customModule="Aweh" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="UQx-MY-7en">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
