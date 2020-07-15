@@ -104,6 +104,7 @@
 		71CCF0DA249C23B30054C210 /* CommentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CCF0D8249C23B30054C210 /* CommentCollectionViewCell.swift */; };
 		71CCF0DB249C23B30054C210 /* CommentCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 71CCF0D9249C23B30054C210 /* CommentCollectionViewCell.xib */; };
 		71D6BAE12495737100F4B5D8 /* AssetsHorizontalListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D6BAE02495737100F4B5D8 /* AssetsHorizontalListView.swift */; };
+		71D7674D24BF587600D9507E /* FeedCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D7674C24BF587600D9507E /* FeedCoordinator.swift */; };
 		71ECFDF82487066B00943917 /* FeedCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71ECFDF72487066B00943917 /* FeedCollectionViewFlowLayout.swift */; };
 		71ECFDFB2487187000943917 /* FeedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71ECFDF92487187000943917 /* FeedCollectionViewCell.swift */; };
 		71ECFDFC2487187000943917 /* FeedCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 71ECFDFA2487187000943917 /* FeedCollectionViewCell.xib */; };
@@ -214,6 +215,7 @@
 		71CCF0D8249C23B30054C210 /* CommentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCollectionViewCell.swift; sourceTree = "<group>"; };
 		71CCF0D9249C23B30054C210 /* CommentCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentCollectionViewCell.xib; sourceTree = "<group>"; };
 		71D6BAE02495737100F4B5D8 /* AssetsHorizontalListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetsHorizontalListView.swift; sourceTree = "<group>"; };
+		71D7674C24BF587600D9507E /* FeedCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCoordinator.swift; sourceTree = "<group>"; };
 		71ECFDF72487066B00943917 /* FeedCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		71ECFDF92487187000943917 /* FeedCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCollectionViewCell.swift; sourceTree = "<group>"; };
 		71ECFDFA2487187000943917 /* FeedCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -769,6 +771,7 @@
 		718BE81E2486BA9600CA328B /* Feed */ = {
 			isa = PBXGroup;
 			children = (
+				71D7674B24BF586700D9507E /* Coordinator */,
 				7162C60924884B93002D8ED4 /* Presenter */,
 				71C78E5424886A0000E29082 /* View */,
 			);
@@ -1037,6 +1040,14 @@
 			path = AssetDetail;
 			sourceTree = "<group>";
 		};
+		71D7674B24BF586700D9507E /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				71D7674C24BF587600D9507E /* FeedCoordinator.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
 		71E3C56C24A8A96F00ABC5B6 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -1285,6 +1296,7 @@
 				716A0C9224A2E01A00F18ED6 /* UICollectionFlowLayout+Elements.swift in Sources */,
 				71CCF0CE249AB1590054C210 /* FeedDetailPresenter.swift in Sources */,
 				71A8325124B91CEB009F2D5C /* ProfileCoordinator.swift in Sources */,
+				71D7674D24BF587600D9507E /* FeedCoordinator.swift in Sources */,
 				71C46D9724B26A3A00A9DB14 /* PickInterestCollectionViewController.swift in Sources */,
 				7162C6132488637F002D8ED4 /* Status.swift in Sources */,
 				71EECE8F249324A900902181 /* PhotosGalleryCoordinator.swift in Sources */,

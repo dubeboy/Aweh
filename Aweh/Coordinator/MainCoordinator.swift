@@ -70,20 +70,17 @@ open class MainCoordinator: NSObject, Coordinator, UINavigationControllerDelegat
         navigationController.dismiss(animated: true, completion: nil)
     }
 }
-
+// TODO: this is a bad design
 class HomeCoordinator: MainCoordinator {
     override func start() -> Self {
-        navigationController.delegate = self
-        let mainViewController = FeedViewController.instantiate()
-        mainViewController.coordinator = self
-        mainViewController.title = "Feed"
-        navigationController.pushViewController(mainViewController, animated: true)
+        startFeedViewController()
         return self
-    }
+    }    
 }
 
 class StatusCoordinator: MainCoordinator {
     override func start() -> Self {
+        // TODO: Fix these so that they look like feed viewController
         navigationController.delegate = self
         let mainViewController = MainStatusViewController()
         mainViewController.coordinator = self
