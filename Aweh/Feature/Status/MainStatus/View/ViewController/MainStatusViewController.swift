@@ -13,6 +13,7 @@ class MainStatusViewController: UIViewController {
     
     var presenter: MainStatusPresenter = MainStatusPresenterImplementation()
     var coordinator: InterestCoordinator!
+    var feedCoordinator: FeedCoordinator!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,13 +41,10 @@ class MainStatusViewController: UIViewController {
                 )
                 viewController.remove()
                 add(viewController)
-                presenter.setIsInMemory(at: selectedIndex)
             case .replies(_):
-                let viewController = UIViewController()
-                viewController.view.backgroundColor = UIColor.red
+                let viewController = feedCoordinator.createFeedViewController()
                 viewController.remove()
                 add(viewController)
-                presenter.setIsInMemory(at: selectedIndex)
         }
     }
 }

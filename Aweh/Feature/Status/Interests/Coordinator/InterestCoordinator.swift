@@ -27,7 +27,6 @@ extension StatusCoordinator: InterestCoordinator {
         navigationController.delegate = self
         let mainViewController = InterestsViewController.instantiate()
         mainViewController.coordinator = self
-        mainViewController.feedCoordinator = self as! FeedCoordinator
         mainViewController.presenter = presenter
         mainViewController.title = "Status"
         return mainViewController

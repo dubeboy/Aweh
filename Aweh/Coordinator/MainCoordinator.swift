@@ -79,11 +79,16 @@ class HomeCoordinator: MainCoordinator {
 }
 
 class StatusCoordinator: MainCoordinator {
+    
+    lazy var homeCoordinator: HomeCoordinator =
+        HomeCoordinator(navigationController: navigationController)
+    
     override func start() -> Self {
         // TODO: Fix these so that they look like feed viewController
         navigationController.delegate = self
         let mainViewController = MainStatusViewController()
         mainViewController.coordinator = self
+        mainViewController.feedCoordinator = homeCoordinator
         mainViewController.title = "Profile"
         navigationController.pushViewController(mainViewController, animated: true)
         return self
@@ -91,6 +96,10 @@ class StatusCoordinator: MainCoordinator {
 }
 
 class ProfileCoordinator: MainCoordinator {
+    
+    lazy var profileCoordinator: StatusCoordinator =
+        StatusCoordinator(navigationController: navigationController)
+    
     override func start() -> Self {
         navigationController.delegate = self
         let mainViewController = ProfileViewController.instantiate()
