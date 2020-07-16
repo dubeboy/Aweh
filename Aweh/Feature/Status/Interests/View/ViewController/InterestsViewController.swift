@@ -26,6 +26,11 @@ class InterestsViewController: UICollectionViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        let bar = navigationController?.navigationBar
+//        bar.
+//        bar?.setNeedsLayout()
+//        bar?.layoutIfNeeded()
+//        bar?.setNeedsDisplay()
     }
     
     private func configureCollectionViewCell() {

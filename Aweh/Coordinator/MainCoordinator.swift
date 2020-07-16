@@ -89,7 +89,7 @@ class StatusCoordinator: MainCoordinator {
         let mainViewController = MainStatusViewController()
         mainViewController.coordinator = self
         mainViewController.feedCoordinator = homeCoordinator
-        mainViewController.title = "Profile"
+        mainViewController.title = "Notifications"
         navigationController.pushViewController(mainViewController, animated: true)
         return self
     }
